@@ -1,0 +1,367 @@
+----------------------------------------------------------------------------------------I
+--------------------------Gaster REMADE By:LegendOfDarknees-------------------------------I
+------------------------------------------------------------------------------------------I
+local p = game.Players.LocalPlayer
+local char = p.Character
+local mouse = p:GetMouse()
+local larm = char["Left Arm"]
+local rarm = char["Right Arm"]
+local lleg = char["Left Leg"]
+local rleg = char["Right Leg"]
+pants = Instance.new("Pants", char)
+shirt = Instance.new("Shirt", char)
+local hed = char.Head
+local torso = char.Torso
+jun = game.Players.LocalPlayer
+---------------------------------I
+local w1 = Instance.new("Weld")--I
+local w2 = Instance.new("Weld")--I
+local w3 = Instance.new("Weld")--I
+local w4 = Instance.new("Weld")--I
+local w5 = Instance.new("Weld")--I
+local w6 = Instance.new("Weld")--I
+local w7 = Instance.new("Weld")--I
+---------------------------------I
+ma = game.Workspace.LegendOfDarknees
+local plrs = game:service'Players'
+local plr = plrs.LocalPlayer
+local char = plr.Character
+local mouse = plr:GetMouse()
+local Weld2 = Instance.new("Weld")
+local Weld6 = Instance.new("Weld")
+        function Chat(msg)
+game:service("Chat"):Chat(jun.Character.Head,msg,Enum.ChatColor.Red)
+end
+Weld = Instance.new("Weld")
+--Weld.Part0 = 
+--Weld.Part1 = 
+--Weld.Parent = 
+local Weld5 = Instance.new("Weld")
+s = Instance.new("Sound",ma.Torso)
+s.SoundId = "rbxassetid://330630853"
+s.Looped = true
+s.Volume = 10000
+s.Pitch = 1
+local player = game.Players.LocalPlayer
+local pchar = player.Character
+local mouse = player:GetMouse()
+local cam = workspace.CurrentCamera
+local rad = math.rad
+local keysDown = {}
+wait(1)
+player = game.Players.LocalPlayer
+torso = player.Character:WaitForChild("Torso")
+mouse = player:GetMouse()
+ 
+mouse.KeyDown:connect(function(key)
+        if key == "e" then
+        local t1 = Instance.new("Part",torso)
+        t1.Transparency = 0.3
+        t1.BrickColor = BrickColor.new("Really black")
+        t1.CanCollide = false
+        t1.TopSurface = "SmoothNoOutlines"
+        t1.BottomSurface = "SmoothNoOutlines"
+Weld5.Part0 = torso
+Weld5.Part1 = t1
+Weld5.Parent = torso
+local tm1 = Instance.new("SpecialMesh",t1)
+tm1.MeshType = "Sphere"
+tm1.Scale = Vector3.new(1,6,1)
+local p1 = Instance.new("Part",workspace)
+p1.BrickColor = BrickColor.new("Really black")
+        local pm1 = Instance.new("SpecialMesh",p1)
+        pm1.MeshId = "rbxassetid://20329976"
+        pm1.Scale = Vector3.new(2,1.5,2)
+        Weld6.Part0 = torso
+        Weld6.Part1 = p1
+        Weld6.Parent = torso
+        Weld6.C0 = CFrame.new(0, -3, 0)*CFrame.fromEulerAnglesXYZ(0, 0, 0)
+               local dist = (torso.Position - mouse.Hit.p).magnitude
+                if dist <= 10000 then
+                        torso.CFrame = CFrame.new(mouse.Hit.p) + Vector3.new(0,3,0)
+for i = 1, 20 do
+        wait(0.05)
+        tm1.Scale = tm1.Scale + Vector3.new(-1,-6,-1)
+        t1.Transparency = t1.Transparency + i/30
+        pm1.Scale = tm1.Scale + Vector3.new(-2,-1.5,-2)
+        p1.Transparency = t1.Transparency + i/30
+end
+wait(1)
+t1:remove()
+p1:remove()
+                end
+        end
+end)
+
+------------------------------------------------------------------------------------------
+--------------------------Functions-------------------------------------------------------
+------------------------------------------------------------------------------------------
+function gaster()
+        local a3 = Instance.new("ParticleEmitter",torso)
+        a3.Texture = "rbxassetid://122434485"
+        a3.LightEmission = 0.25
+        a3.Size = NumberSequence.new(10,10,10)
+        a3.Transparency = NumberSequence.new(0.5)
+        a3.ZOffset = 5
+        a3.Lifetime = NumberRange.new(1)
+        a3.Rate = 20
+        a3.Speed = NumberRange.new(0)
+        a3.VelocitySpread = 55
+        a3.EmissionDirection = "Top"
+local p1 = Instance.new("Part",workspace)
+p1.CanCollide = false
+p1.Anchored = true
+p1.BrickColor = BrickColor.new("Really black")
+        local pm1 = Instance.new("SpecialMesh",p1)
+        pm1.MeshId = "rbxassetid://20329976"
+        p1.Anchored = true
+        p1.Position = lleg.Position
+        pm1.Scale = Vector3.new(0.1,0.1,0.1)
+        Weld6.Part0 = torso
+        Weld6.Part1 = p1
+        Weld6.Parent = torso
+        Weld6.C0 = CFrame.new(0, -3, 0)*CFrame.fromEulerAnglesXYZ(0, 0, 0)
+for i = 1, 20 do
+        wait(0.05)
+        pm1.Scale = pm1.Scale + Vector3.new(-5,0.5,-5)
+        p1.Transparency = p1.Transparency + i/30
+end
+wait(1)
+p1:remove()
+                       local a1 = Instance.new("Part",workspace)
+                a1.BrickColor = BrickColor.new("Really black")
+                a1.TopSurface = "SmoothNoOutlines"
+                a1.BottomSurface = "SmoothNoOutlines"
+                a1.Transparency = 0.5
+                a1.CanCollide = false
+                local sm1 = Instance.new("SpecialMesh",a1)
+                sm1.MeshType = "Sphere"
+                a1.Position = ma.Torso.Position
+                ------------------------------------------------
+                       local a = Instance.new("Part",workspace)
+                a.BrickColor = BrickColor.new("Really black")
+                a.CanCollide = false
+                local sm = Instance.new("SpecialMesh",a)
+                sm.MeshType = "Sphere"
+for i = 1, 20 do
+        wait(0.05)
+        a.Transparency = a.Transparency + (3/20)
+        a.CFrame = torso.CFrame
+        sm.Scale = sm.Scale + Vector3.new(3,9,6)
+end
+wait(1)
+Chat("Beware of the man who speaks in hands...")
+s:Play()
+ma.Humanoid.MaxHealth=math.huge
+wait(1)
+ma.Humanoid.Health = math.huge
+Chat("ErOrR%20$)?")
+p1:remove()
+-----Hand one(green for shield)------------------
+local h1 = Instance.new("Part",torso)
+h1.CanCollide = false
+h1.BrickColor = BrickColor.new("Lime green")
+h1.Material = "Neon"
+local hm1 = Instance.new("SpecialMesh",h1)
+hm1.MeshId = "rbxassetid://440008860"
+hm1.Scale = Vector3.new(1.5,1.5,1.5)
+w1.Part0 = torso
+w1.Part1 = h1
+w1.Parent = torso
+w1.C0 = CFrame.new(3, 3, 0)*CFrame.fromEulerAnglesXYZ(0, 90, 90)
+------------Hand two(Black for death laser/beam)------------
+local h2 = Instance.new("Part",torso)
+h2.CanCollide = false
+h2.BrickColor = BrickColor.new("Really black")
+h2.Material = "Neon"
+local hm2 = Instance.new("SpecialMesh",h2)
+hm2.MeshId = "rbxassetid://440008860"
+hm2.Scale = Vector3.new(1.5,1.5,1.5)
+w2.Part0 = torso
+w2.Part1 = h2
+w2.Parent = torso
+w2.C0 = CFrame.new(-3, 3, 0)*CFrame.fromEulerAnglesXYZ(0, 90, 90)
+--------------Hand three(For water boomerangs)-------------
+local h3 = Instance.new("Part",torso)
+h3.CanCollide = false
+h3.BrickColor = BrickColor.new("Cyan")
+h3.Material = "Neon"
+local hm3 = Instance.new("SpecialMesh",h3)
+hm3.MeshId = "rbxassetid://440008860"
+hm3.Scale = Vector3.new(1.5,1.5,1.5)
+w3.Part0 = torso
+w3.Part1 = h3
+w3.Parent = torso
+w3.C0 = CFrame.new(-2, 4, 0)*CFrame.fromEulerAnglesXYZ(0, 90, 90)
+------------Hand four(For explosive attacks)-------------------------
+local h4 = Instance.new("Part",torso)
+h4.CanCollide = false
+h4.BrickColor = BrickColor.new("Deep orange")
+h4.Material = "Neon"
+local hm4 = Instance.new("SpecialMesh",h4)
+hm4.MeshId = "rbxassetid://440008860"
+hm4.Scale = Vector3.new(1.5,1.5,1.5)
+w4.Part0 = torso
+w4.Part1 = h4
+w4.Parent = torso
+w4.C0 = CFrame.new(2, 4, 0)*CFrame.fromEulerAnglesXYZ(0, 90, 90)
+----------------Hand 5 (For grab)----------------------------
+local h5 = Instance.new("Part",torso)
+h5.CanCollide = false
+h5.BrickColor = BrickColor.new("Really red")
+h5.Material = "Neon"
+local hm5 = Instance.new("SpecialMesh",h5)
+hm5.MeshId = "rbxassetid://440008860"
+hm5.Scale = Vector3.new(1.5,1.5,1.5)
+w5.Part0 = torso
+w5.Part1 = h5
+w5.Parent = torso
+w5.C0 = CFrame.new(-1, 4.5, 0)*CFrame.fromEulerAnglesXYZ(0, 90, 90)
+-----------------Hand 6 (For teleport)-----------------------
+local h6 = Instance.new("Part",torso)
+h6.CanCollide = false
+h6.BrickColor = BrickColor.new("Pink")
+h6.Material = "Neon"
+local hm6 = Instance.new("SpecialMesh",h6)
+hm6.MeshId = "rbxassetid://440008860"
+hm6.Scale = Vector3.new(1.5,1.5,1.5)
+w6.Part0 = torso
+w6.Part1 = h6
+w6.Parent = torso
+w6.C0 = CFrame.new(0, 5, 0)*CFrame.fromEulerAnglesXYZ(0, 90, 90)
+-------------------------------------------------------------
+end
+gaster()
+------SWITCH(DONT TOUCH)----------
+attack = false
+--------------Attack 1 (Shield)------------------------
+mouse.KeyDown:connect(function(key)
+ if key == "q" then
+        if attack == false then
+        attack = true
+        local f = Instance.new("ForceField")
+        f.Parent = game.Players["LegendOfDarknees"].Character
+        local s = Instance.new("Part",workspace)
+        local s3 = Instance.new("Part",workspace)
+        s3.BrickColor = BrickColor.new("Forest green")
+        local sl = Instance.new("SpecialMesh",s3)
+        sl.MeshId = "rbxassetid://20329976"
+        sl.Scale = Vector3.new(1,0.5,1)
+        s.TopSurface = "SmoothNoOutlines"
+        s.CanCollide = false
+        s.BrickColor = BrickColor.new("Forest green")
+        s.Material = "Neon"
+        s.Transparency = 0.5
+        s.BottomSurface = "SmoothNoOutlines"
+        local sm = Instance.new("SpecialMesh",s)
+        sm.MeshType = "Sphere"
+        sm.Scale = Vector3.new(1,3,2)
+        local f = Instance.new("ForceField")
+        f.Parent = game.Players["LegendOfDarknees"].Character
+        for i = 1, 20 do
+        wait(0.01)
+        sm.Scale = sm.Scale + Vector3.new(0.1,0.3,0.2)
+        sl.Scale = sl.Scale + Vector3.new(3,-1,3)
+        Weld6.Part0 = torso
+        Weld6.Part1 = s3
+        Weld6.Parent = torso
+        Weld6.Part0 = torso
+        Weld6.Part1 = s
+        Weld6.Parent = torso
+        s3.CFrame = torso.CFrame
+        s.CFrame = torso.CFrame
+        wait(0.05)
+        sl.Scale = sl.Scale + Vector3.new(-3,2,-3)
+        end
+        wait(1)
+        attack = false
+        wait(4)
+        s:remove()
+        f:remove()
+        s3:remove()
+                end
+        end
+end)
+--------Attack 2(Hell beam)--------------
+mouse.KeyDown:connect(function(key)
+ if key == "f" then
+                if attack == false then
+                        attack = true
+                        Chat("AH,SO YOU WANT TO DIE?") --20329976
+        local p1 = Instance.new("Part",workspace)
+        p1.CanCollide = false
+        p1.BrickColor = BrickColor.new("Really black")
+        local pm1 = Instance.new("SpecialMesh",p1)
+        pm1.MeshId = "rbxassetid://20329976"
+        pm1.Scale = Vector3.new(0.1,0.5,0.1)
+        Weld6.Part0 = torso
+        Weld6.Part1 = p1
+        Weld6.Parent = torso
+        Weld6.C0 = CFrame.new(0, 10, 0)*CFrame.fromEulerAnglesXYZ(0, 0, 0)
+        local p4 = Instance.new("Part",workspace)
+        p4.CanCollide = false
+        p4.BrickColor = BrickColor.new("Really black")
+        local pm2 = Instance.new("SpecialMesh",p4)
+        pm2.MeshType = "Sphere"
+        pm2.Scale = Vector3.new(0.1,4,0.2)
+        Weld6.Part0 = torso
+        Weld6.Part1 = p4
+        Weld6.Parent = torso
+p1.Touched:connect(function(ht)
+    local hit = ht.Parent
+    if ht and hit:IsA("Model") then
+            if hit:FindFirstChild("Humanoid") then
+                if hit.Name ~= p.Name then
+                                hit:FindFirstChild("Humanoid"):TakeDamage(math.random(5,8))
+                    end
+                end
+    elseif ht and hit:IsA("Hat") then
+        if hit.Parent.Name ~= p.Name then
+            if hit.Parent:FindFirstChild("Humanoid") then
+                            hit.Parent:FindFirstChild("Humanoid"):TakeDamage(math.huge)
+                                    end
+                end
+end
+end)
+for i = 1, 20 do
+        wait(0.05)
+        pm1.Scale = pm1.Scale + Vector3.new(10,10,10)
+        p1.Transparency = p1.Transparency + i/50
+        p1.Size = p4.Size + Vector3.new(-8,3,-8)
+        p1.CFrame = torso.CFrame
+        --------------------------------------------------
+        pm2.Scale = pm2.Scale + Vector3.new(-3,9,-6)
+        p4.Transparency = p4.Transparency + i/50
+        p4.Size = p4.Size + Vector3.new(-3,9,-6)
+        p4.CFrame = torso.CFrame
+end
+wait(1)
+p1:remove()
+attack = false
+wait(2)
+p1:Remove()
+p4:Remove()
+end
+end
+end)
+Weld7 = Instance.new("Weld")
+while true do
+                wait()
+        local e = Instance.new("Part",workspace)
+        e.TopSurface = "SmoothNoOutlines"
+        e.CanCollide = false
+        e.BottomSurface = "SmoothNoOutlines"
+        e.BrickColor = BrickColor.new("Really black")
+        local em = Instance.new("SpecialMesh",e)
+        em.MeshType = "Sphere"
+        em.Scale = Vector3.new(2,8,2)
+        Weld7.Part0 = torso
+        Weld7.Part1 = e
+        Weld7.Parent = torso
+        Weld.C0 = CFrame.new(0, 0, 0)*CFrame.fromEulerAnglesXYZ(0, 0, 0)
+        for i = 1, 20 do
+        wait(0.1)
+        e.Transparency = e.Transparency + i/200
+                end
+end
+----------------------------------------------------------
