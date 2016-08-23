@@ -22,7 +22,7 @@ local w5 = Instance.new("Weld")--I
 local w6 = Instance.new("Weld")--I
 local w7 = Instance.new("Weld")--I
 ---------------------------------I
-ma = game.Workspace.LegendOfDarknees
+ma = game.Workspace.killkillkill9371768
 local plrs = game:service'Players'
 local plr = plrs.LocalPlayer
 local char = plr.Character
