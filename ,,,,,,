@@ -1,0 +1,70 @@
+local plr=game.Players.LocalPlayer
+local mouse=plr:GetMouse()
+repeat wait() until plr.Character
+wait(1)
+local char=plr.Character
+local hum=char:WaitForChild("Humanoid")
+local torso=char:WaitForChild("Torso")
+local hrp=char:WaitForChild("HumanoidRootPart")
+local ownershipre=workspace.SetOwnership
+local keys=plr.PlayerGui.Keys
+local oldh=100
+local nb=0
+hum.WalkSpeed=30
+hum.JumpPower=0
+local check=false
+
+local heart=script.Heart:Clone()
+heart.Parent=workspace
+heart.Normal.Anchored=false
+heart.Owner.Value=plr.Name
+local hweld=Instance.new("Weld",heart)
+hweld.Part0=torso
+hweld.Part1=heart.Normal
+hweld.C0=CFrame.new(0,0.35,-0.8)*CFrame.Angles(0,0,math.pi/2)
+
+hum.HealthChanged:connect(function(h)
+	if h<oldh then
+		local hurt=script.Hurt:Clone()
+		hurt.Parent=script
+		hurt:Play()
+		game.Debris:AddItem(hurt,1)
+		oldh=h
+	else
+		if nb==0 then
+			local heal=script.Heal:Clone()
+			heal.Parent=script
+			heal:Play()
+			game.Debris:AddItem(heal,1)
+		end
+		nb=nb+1
+		if nb==3 then
+			nb=0
+		end
+		oldh=h
+	end
+end)
+
+hum.Died:connect(function()
+	for _,v in pairs(char:GetChildren()) do
+		if v:IsA("BasePart") then
+			v.Transparency=1
+			v.Anchored=true
+		elseif v:IsA("Hat") then
+			v.Handle.Transparency=1
+		elseif v:IsA("Model") and v.Name~="Heart" then
+			v:Destroy()
+		end
+	end
+	char.Head.face:Destroy()
+	heart.Normal.Anchored=true
+	heart.Normal.Transparency=1
+	heart.BrokenLeft.Transparency=0
+	heart.BrokenRight.Transparency=0
+	script.Die:Play()
+	ownershipre:FireServer(plr,heart,"After",5,"Part")
+	wait(1.6)
+	heart.BrokenLeft.Transparency=1
+	heart.BrokenRight.Transparency=1
+	heart.Normal.Die:Emit(20)
+end)
