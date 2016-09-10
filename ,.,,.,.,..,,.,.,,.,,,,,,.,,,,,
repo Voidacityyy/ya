@@ -70,11 +70,6 @@ end
 end
 debounce = false
 end
-
-
-
-
-
 ---------------------------------------
 ActivateKey = "z"
 --
