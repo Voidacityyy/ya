@@ -972,7 +972,7 @@ TrueZone = function(stringa,userinputstate,inputobject)
 	if On == false then
 		On = true
 		LastUseTime = tick()
-		ChatService:Chat(Char,"*YOU"RE FILLED WITH DETERMINATION*",2)
+		ChatService:Chat(Char,"*You feel your sins crawling on your back*",2)
 		wait(0.5)
 		ChatService:Chat(Char,"*Mercy Select*",2)
 		Char.PrimaryPart = Char:WaitForChild("Torso")
