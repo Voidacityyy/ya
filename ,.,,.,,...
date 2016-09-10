@@ -27,8 +27,8 @@ Settings = {
 }
 
 local assetlink = "http://www.roblox.com/asset/?id="
-local hit_sounds = {"406913243"}
-local death_sounds = {"146594640", "146594648", "146457047"}
+local hit_sounds = {"388826051"}
+local death_sounds = {"407492812"}
 function Clean(obj)
 	spawn(function()
 		wait(6)
@@ -147,19 +147,19 @@ end
 
 local dg_sounds = {
 	equip = {
-		"153647514"
+		"462606062"
 	},
 	hit = {
-		"153647516",
-		"153647519",
-		"153647522",
-		"153647526"
+		"388826051",
+		"388826051",
+		"388826051",
+		"388826051"
 	},
 	swing = {
-		"153647529",
-		"153647534",
-		"153647539",
-		"153647540"
+		"437475935",
+		"437475935",
+		"437475935",
+		"437475935"
 	}
 }
 
