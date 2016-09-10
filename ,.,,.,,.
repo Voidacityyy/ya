@@ -737,9 +737,7 @@ pants = Instance.new("Pants", character)
 pants.Name = "Pants"
 character.Shirt.ShirtTemplate = "http://www.roblox.com/asset/?id=426572943"
 character.Pants.PantsTemplate = "http://www.roblox.com/asset/?id=463444426"
-z=Instance.new('Decal',head)
-z.Face = 'Front'
-z.Texture='rbxassetid://416805897'
+
 ------------------------------------------------
 local Player = game.Players.LocalPlayer
 local debounce = false
