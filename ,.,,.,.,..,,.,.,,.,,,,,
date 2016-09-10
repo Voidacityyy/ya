@@ -1,104 +1,102 @@
-local enabled = true
+ActivateKey = "z"
+--
+math.randomseed(tick())
+RService = game:GetService("RunService")
+UIS = game:GetService("UserInputService")
+CAS = game:GetService("ContextActionService")
+ChatService = game:GetService("Chat")
+ButtonHolding = nil
+--
+ZoneColor = BrickColor.new("Really red")
+ZoneSpeed = 26
+ZoneContestSpeed = 30
+CD = false
+On = false
+Duration = 90
+LastUseTime = 0
+ReloadTime = 360
+ReloadTimeMax = 360
+--
 Plr = game.Players.LocalPlayer
+Mouse = Plr:GetMouse()
 Char = Plr.Character or Plr.CharacterAdded:wait()
-Player = script.Parent.Parent
-me = Player
-mouse = Player:GetMouse()
-run = game:GetService("RunService")
-LeftShoulder = Player.Character.Torso["Left Shoulder"]
-RightShoulder =   Player.Character.Torso["Right Shoulder"]
-Colour = BrickColor.new("Toothpaste")
-waittime = 9999
-
-
-function onKeyDown(key)
-if not enabled then return end
-enabled = false
-	Key = key:lower()
-	
-	if key == "z" then
-		
-		Run = game:GetService("RunService")
-		game:GetService("Chat"):Chat(Player.Character.Head, "i get money")-- what it says untop head
-		me.Character.Humanoid.WalkSpeed = 16
-
-		local ETF = script.ET:Clone()
-		ETF.Parent = Char.Head
-		ETF.Enabled = true
-		
-		local ETF2 = script.Sound:Clone()
-		ETF2.Parent = Char.Torso
-		ETF2:Play()
-		
-		x = Instance.new("Part")
-		x.Parent = me.Character.Torso
-		x.Transparency = 1
-		x.Reflectance = 0.4
-		x.BrickColor = Colour
-		x.Material = "SmoothPlastic"
-		x.Size = Vector3.new(5,5,5)-- size
-		x.Anchored = false
-		x.CanCollide = false
-		x.Name = Player.Name
-		x.CFrame = me.Character.Torso.CFrame*CFrame.new(0,0,0)
-		x.Shape = "Ball"
-		w = Instance.new("Weld")
-		w.Parent = me.Character.Torso
-		w.Part0 = x
-		w.Part1 = me.Character.Torso
-		me.Character.Torso.Anchored = false
-		
-	shine = script.point:Clone()
-	shine.Parent = x
-	shine.Range = 10
-	wait(60) -- How long it will stay for
-	ETF:Destroy()
-	ETF2:Destroy()
-	
-game.Debris:AddItem(x,10)
-wait(10.1)
-me.Character.Humanoid.WalkSpeed = 16		
-			
-		local d = me.Character:GetChildren()
-						for i=1, #d do 
-						if (d[i].className == "Hat") then 
-						d[i].Handle.Anchored = false
-						end 
-						end
-						local f = me.Character:GetChildren() 
-						for i=1, #f do 
-						if (f[i].className == "Part") then 
-						f[i].Anchored = false
-						end 
-						end
-	wait(waittime)
-		end
-
-enabled = true
+Char = workspace:WaitForChild(Plr.Name)
+--
+function TpFx(A,B,s1,s2)
+	local Fx = Instance.new("Part",workspace)
+	Fx.CanCollide = false
+	Fx.Anchored = true
+	Fx.BrickColor = ZoneColor
+	Fx.Transparency = 0.4
+	Fx.FormFactor = "Custom"
+	Fx.TopSurface = 0
+	Fx.BottomSurface = 0
+	Fx.Size = Vector3.new(s1,s2,(A.p-B.p).Magnitude)
+	Fx.CFrame = CFrame.new(A.p,B.p)*CFrame.new(0,0,-(A.p-B.p).Magnitude/7)
+	return Fx
 end
-
-
-	
-
-mouse.KeyDown:connect(onKeyDown)
-
-game:GetService("UserInputService").InputBegan:connect(function(inputobject,gpe)
-	local code = inputobject.KeyCode
-	local Key = ConvertCode(code)
-	if CD == false and Key == ActivateKey and not gpe then
-		CD = true
-		EmperorEye()
+--
+TrueZone = function(stringa,userinputstate,inputobject)
+	if CD == true or userinputstate == Enum.UserInputState.End then return end
+	CD = true
+	if On == false then
+		On = true
+		LastUseTime = tick()
+		ChatService:Chat(Char,"I will not lose here...",2)
+		wait(0.5)
+		ChatService:Chat(Char,"Zone!",2)
+		Char.PrimaryPart = Char:WaitForChild("Torso")
+		Char:WaitForChild("Humanoid").WalkSpeed = ZoneSpeed
+		local ZoneGlow = Instance.new("PointLight",Char:WaitForChild("Torso"))
+		ZoneGlow.Brightness = math.huge
+		ZoneGlow.Color = ZoneColor.Color
+		ZoneGlow.Range = 15
+		spawn(function()
+			while On == true do RService.RenderStepped:wait() end
+			ZoneGlow:Destroy()
+			Char.Humanoid.WalkSpeed = 16
+		end)
+		local LaserEyesFunction = function()
+			--LeftEye CFrame =  Head.CFrame*CFrame.new(-.175,.225,-.6)
+			--RightEye CFrame =  Head.CFrame*CFrame.new(.175,.225,-.6)
+			local LastCF = nil
+			while On == true do 
+				local FxCreated
+				local FxCreated2
+				if LastCF == nil then
+					local C1 = Char:WaitForChild("Head").CFrame
+					RService.RenderStepped:wait()
+					FxCreated = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(-.175,.225,-.6),C1*CFrame.new(-.175,.225,-.6),0,0)
+					FxCreated2 = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(.175,.225,-.6),C1*CFrame.new(.175,.225,-.6),0,0)
+					LastCF = C1
+				else
+				FxCreated = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(-.175,.225,-.6),LastCF*CFrame.new(-.175,.225,-.6),0,0)
+				FxCreated2 = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(.175,.225,-.6),LastCF*CFrame.new(.175,.225,-.6),0,0)
+				LastCF = Char:WaitForChild("Head").CFrame
+				end
+				spawn(function()
+					wait(.1)
+					FxCreated2:Destroy()
+					FxCreated:Destroy()
+				end)
+				RService.RenderStepped:wait()
+			end
+		end
+		spawn(LaserEyesFunction)
+		wait(Duration)
+		On = false
+	else
+		On = false
+		ChatService:Chat(Char,ReloadTime.." seconds til I can reuse...")
 	end
-end)
-
-game:GetService("UserInputService").InputBegan:connect(function(inputobject,gpe)
-	local code = inputobject.KeyCode
-	local Key = ConvertCode(code)
-	if CD == false and Key == ActivateKey and not gpe then
-		CD = true
-		EmperorEye()
-	end
-end)
+	wait(ReloadTime)
+	CD = false
+end
+--
+CAS:BindAction("TrueZone",TrueZone,true,ActivateKey)
+Char:WaitForChild("Humanoid").Died:wait()
+CAS:UnbindAction("TrueZone")
+--tbnj123
 -----------------------------------
 local Player = game.Players.LocalPlayer
 local debounce = false
