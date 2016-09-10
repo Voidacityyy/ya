@@ -1,5 +1,5 @@
 ChatService = game:GetService("Chat")
-ActivateKey = "x"
+ActivateKey = "c"
 Plr = game.Players.LocalPlayer
 Char = Plr.Character or Plr.CharacterAdded:wait()
 CD = false
