@@ -17,7 +17,7 @@ local pl_mouse = player:GetMouse()
 
 local rs = game:GetService("RunService")
 
-local stab_damage = 50
+local stab_damage = 100
 local walkspeeds = {25, 30}
 
 Settings = {
@@ -970,7 +970,7 @@ TrueZone = function(stringa,userinputstate,inputobject)
 	if On == false then
 		On = true
 		LastUseTime = tick()
-		ChatService:Chat(Char,"Heh....-",2)
+		ChatService:Chat(Char,"D I E",2)
 		wait(0.5)
 		ChatService:Chat(Char,"*Genocide Chara Eyes*",2)
 		Char.PrimaryPart = Char:WaitForChild("Torso")
