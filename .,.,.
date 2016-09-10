@@ -912,3 +912,141 @@ Char:WaitForChild("Humanoid").Died:wait()
 CAS:UnbindAction("TrueZone")
 --tbhlelelelel
 -----------------------------------
+local Player = game.Players.LocalPlayer
+local debounce = false
+
+local function inputBegan(inputObject, gameProcessedEvent)
+	if debounce then return end
+	debounce = true
+	
+	if inputObject.KeyCode == Enum.KeyCode.C and not gameProcessedEvent and Player.Character then
+		local humanoid = Player.Character:FindFirstChild("Humanoid")
+		local torso = Player.Character:FindFirstChild("Torso")
+		
+		local head = Player.Character:FindFirstChild("Head")
+		if head then
+			game:GetService("Chat"):Chat(head, "Jump")
+		end
+		
+		if humanoid and torso then
+			local jump = Instance.new("BodyForce")
+			jump.Parent = torso
+			jump.force = Vector3.new(0,6500,0)
+			wait(.5)
+			if jump then jump:Destroy() end
+			
+			if humanoid then
+				humanoid.WalkSpeed = 16
+				wait(2)
+			end
+			if humanoid then 
+				humanoid.WalkSpeed = 16
+				wait(1)
+			end
+		end	
+	end
+	debounce = false
+end
+
+game:GetService("UserInputService").InputBegan:connect(inputBegan)
+-------------------------------------
+local Player = game.Players.LocalPlayer
+Char = Player.Character or Player.CharacterAdded:wait()
+local debounce = false
+EffectColor = BrickColor.new("Navy blue")
+Char = workspace[Player.Name]
+
+
+local function inputBegan(inputObject, gameProcessedEvent)
+if debounce then return end
+debounce = true
+if inputObject.KeyCode == Enum.KeyCode.V and not gameProcessedEvent and Player.Character then
+local humanoid = Player.Character:FindFirstChild("Humanoid")
+game:GetService("Chat"):Chat(Player.Character.Head, "Dash!")
+if humanoid then
+humanoid.WalkSpeed = 20
+local stopit = false
+local waitsy = coroutine.wrap(function()
+	wait(6)
+	stopit = true
+end)
+waitsy()
+asd = false
+local lasttorsopX = Char.Torso.Position.X
+local lasttorsopZ = Char.Torso.Position.Z
+while stopit == false do wait()
+	if stopit == true then break end
+	if asd == false then
+	local kasda = coroutine.wrap(function()
+		wait(0.85)
+		asd = false
+	end)
+	kasda()
+	
+	if Char.Torso.Position.X ~= lasttorsopX or Char.Torso.Position.Z ~= lasttorsopZ then 
+					lasttorsopX = Char.Torso.Position.X
+					lasttorsopZ = Char.Torso.Position.Z
+		for _,part in pairs(Char:GetChildren()) do
+			local parttoclone = nil
+			local savedcframe = nil
+			if part.Name ~= "HumanoidRootPart" then
+				if part:IsA("BasePart") then
+					parttoclone = part
+					savedcframe = part.CFrame
+				elseif part:IsA("Hat") then
+					parttoclone = part.Handle
+					savedcframe = part.Handle.CFrame
+				end
+				if parttoclone ~= nil then
+					local PartHolder = Instance.new("Model",Char.Torso)
+					PartHolder.Name = ""
+					local PC = Instance.new("Part")
+					PC.Parent = workspace
+					PC.FormFactor = "Custom"
+					PC.CanCollide = false
+					PC.Anchored = true
+					PC.Name = parttoclone.Name
+					PC.BrickColor = EffectColor
+					PC.Size = parttoclone.Size
+					PC.TopSurface = 0
+					PC.BottomSurface = 0
+					PC.Transparency = 0.5
+					PC.CFrame = savedcframe
+					PC.Parent = PartHolder
+					PC.CanCollide = false
+					PC.Changed:connect(function()
+						PC.CanCollide = false
+					end)
+					if parttoclone:FindFirstChild("Mesh") then
+						local Mesh = parttoclone.Mesh:Clone()
+						Mesh.TextureId = ""
+						Mesh.Parent = PC
+					end
+					local fade = coroutine.wrap(function()
+						for i = 1, 20 do
+						PC.Transparency = PC.Transparency + 0.1/4
+						wait()
+						end
+					end)
+					fade()
+					local delete = coroutine.wrap(function()
+					wait(0.1)
+					PartHolder:Destroy()
+					end)		
+					delete()			
+				end
+			end
+		end
+		end
+	end
+end
+if humanoid then
+humanoid.WalkSpeed = 16
+wait(9)
+end
+end
+end
+debounce = false
+end
+
+game:GetService("UserInputService").InputBegan:connect(inputBegan)
