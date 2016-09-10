@@ -18,7 +18,7 @@ local pl_mouse = player:GetMouse()
 local rs = game:GetService("RunService")
 
 local stab_damage = 110
-local walkspeeds = {16, 19}
+local walkspeeds = {25, 30}
 
 Settings = {
 	Equip_time = 0.4,
