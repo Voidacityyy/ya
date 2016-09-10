@@ -4,7 +4,7 @@ local debounce = false
 local Player = game.Players.LocalPlayer
 Char = Player.Character or Player.CharacterAdded:wait()
 local debounce = false
-EffectColor = BrickColor.new("New Yeller")
+EffectColor = BrickColor.new("Cyan")
 Char = workspace[Player.Name]
 
 
@@ -13,7 +13,7 @@ if debounce then return end
 debounce = true
 if inputObject.KeyCode == Enum.KeyCode.R and not gameProcessedEvent and Player.Character then
 local humanoid = Player.Character:FindFirstChild("Humanoid")
-game:GetService("Chat"):Chat(Player.Character.Head, "Aomine : Dash!")
+game:GetService("Chat"):Chat(Player.Character.Head, "Dash!")
 if humanoid then
 humanoid.WalkSpeed = 27
 local stopit = false
