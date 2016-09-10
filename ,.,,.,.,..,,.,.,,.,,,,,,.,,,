@@ -1,3 +1,81 @@
+local Player = game.Players.LocalPlayer
+local debounce = false
+ 
+ 
+local function inputBegan(inputObject, gameProcessedEvent)
+if debounce then return end
+debounce = true
+if inputObject.KeyCode == Enum.KeyCode.X and not gameProcessedEvent and Player.Character then
+local humanoid = Player.Character:FindFirstChild("Humanoid")
+game:GetService("Chat"):Chat(Player.Character.Head, "Mirage!")
+if humanoid then
+game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(0,-10,0)
+if humanoid then
+game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Head"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Torso"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0.5
+if humanoid then
+wait(2.5)
+game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0
+game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0
+game.Players.LocalPlayer.Character["Head"].Transparency = 0
+game.Players.LocalPlayer.Character["Torso"].Transparency = 0
+game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0
+game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0 
+wait(10)
+end
+end
+end
+end
+debounce = false
+end
+
+
+game:GetService("UserInputService").InputBegan:connect(inputBegan)
+
+local function inputBegan(inputObject, gameProcessedEvent)
+if debounce then return end
+debounce = true
+if inputObject.KeyCode == Enum.KeyCode.v and not gameProcessedEvent and Player.Character then
+local humanoid = Player.Character:FindFirstChild("Humanoid")
+game:GetService("Chat"):Chat(Player.Character.Head, "Tatsuya : Mirage!")
+if humanoid then
+game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(15,-5,0)
+if humanoid then
+game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Head"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Torso"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0.5
+
+
+if humanoid then
+wait(2.5)
+game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0
+game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0
+game.Players.LocalPlayer.Character["Head"].Transparency = 0
+game.Players.LocalPlayer.Character["Torso"].Transparency = 0
+game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0
+game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0 
+
+
+wait(15)
+end
+end
+end
+end
+debounce = false
+end
+
+
+
+
+
+---------------------------------------
 ActivateKey = "z"
 --
 math.randomseed(tick())
@@ -98,79 +176,3 @@ Char:WaitForChild("Humanoid").Died:wait()
 CAS:UnbindAction("TrueZone")
 --tbhlelelelel
 -----------------------------------
-
-local Player = game.Players.LocalPlayer
-local debounce = false
- 
- 
-local function inputBegan(inputObject, gameProcessedEvent)
-if debounce then return end
-debounce = true
-if inputObject.KeyCode == Enum.KeyCode.B and not gameProcessedEvent and Player.Character then
-local humanoid = Player.Character:FindFirstChild("Humanoid")
-game:GetService("Chat"):Chat(Player.Character.Head, "Mirage!")
-if humanoid then
-game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(0,-10,0)
-if humanoid then
-game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Head"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Torso"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0.5
-if humanoid then
-wait(2.5)
-game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0
-game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0
-game.Players.LocalPlayer.Character["Head"].Transparency = 0
-game.Players.LocalPlayer.Character["Torso"].Transparency = 0
-game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0
-game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0 
-wait(10)
-end
-end
-end
-end
-debounce = false
-end
-
-
-game:GetService("UserInputService").InputBegan:connect(inputBegan)
-
-local function inputBegan(inputObject, gameProcessedEvent)
-if debounce then return end
-debounce = true
-if inputObject.KeyCode == Enum.KeyCode.v and not gameProcessedEvent and Player.Character then
-local humanoid = Player.Character:FindFirstChild("Humanoid")
-game:GetService("Chat"):Chat(Player.Character.Head, "Tatsuya : Mirage!")
-if humanoid then
-game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(15,-5,0)
-if humanoid then
-game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Head"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Torso"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0.5
-
-
-if humanoid then
-wait(2.5)
-game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0
-game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0
-game.Players.LocalPlayer.Character["Head"].Transparency = 0
-game.Players.LocalPlayer.Character["Torso"].Transparency = 0
-game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0
-game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0 
-
-
-wait(15)
-end
-end
-end
-end
-debounce = false
-end
-
-
-
