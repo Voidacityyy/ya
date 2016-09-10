@@ -1,153 +1,143 @@
-local enabled = true
+ChatService = game:GetService("Chat")
+ActivateKey = "x"
 Plr = game.Players.LocalPlayer
 Char = Plr.Character or Plr.CharacterAdded:wait()
-Player = script.Parent.Parent
-me = Player
-mouse = Player:GetMouse()
-run = game:GetService("RunService")
-LeftShoulder = Player.Character.Torso["Left Shoulder"]
-RightShoulder =   Player.Character.Torso["Right Shoulder"]
-Colour = BrickColor.new("Really black")
-waittime = 60
-RModule = require(script:WaitForChild("MainModule"))
-Resize = RModule["ScaleCharacter"]
+CD = false
+Range = 5
+TripLastingTime = 2
+EmperorEyeDuration = 4
+ReloadTime = 15
+EffectColor = BrickColor.new("Really red")
+Char = workspace[Plr.Name]
 
-function onKeyDown(key)
-if not enabled then return end
-enabled = false
-	Key = key:lower()
-	
-	if key == "c" then
-		
-		Run = game:GetService("RunService")
-		game:GetService("Chat"):Chat(Player.Character.Head, ("Animal Instincts!")-- what it says untop head
-		me.Character.Humanoid.WalkSpeed = 20.5
-		
-		local ETF = script.ET:Clone()
-		ETF.Parent = Char.Head
-		ETF.Enabled = true
-		
-		wait(0.05)
-		ETF.Size = UDim2.new(1.5 ,95 ,1.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(2 ,95 ,2 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(2.5 ,95 ,2.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(3 ,95 ,3 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(3.5 ,95 ,3.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(4 ,95 ,4 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(4.5 ,95 ,4.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(5 ,95 ,5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(5.5 ,95 ,5.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(6 ,95 ,6 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(6.5 ,95 ,6.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(7 ,95 ,7 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(7.5 ,95 ,7.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(8 ,95 ,8 ,95)
-		wait(2)
-		ETF.Size = UDim2.new(7.5 ,95 ,7.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(7 ,95 ,7 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(6.5 ,95 ,6.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(6 ,95 ,6 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(5.5 ,95 ,5.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(5 ,95 ,5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(4.5 ,95 ,4.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(4 ,95 ,4 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(3.5 ,95 ,3.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(3 ,95 ,3 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(2.5 ,95 ,2.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(2 ,95 ,2 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(1.5 ,95 ,1.5 ,95)
-		wait(0.05)
-		
-		
-		
-		ETF:Destroy()	
-	
-	
-	Resize(Char,0.9)
-	
-	
-	me.Character.Humanoid.WalkSpeed = 20.5
-	me.Character.Humanoid.JumpPower = 70
-		x = Instance.new("Part")
-		x.Parent = me.Character.Torso
-		x.Transparency = 1
-		x.Reflectance = 0.4
-		x.BrickColor = Colour
-		x.Material = "SmoothPlastic"
-		x.Size = Vector3.new(5,5,5)-- size
-		x.Anchored = false
-		x.CanCollide = false
-		x.Name = Player.Name
-		x.CFrame = me.Character.Torso.CFrame*CFrame.new(0,0,0)
-		x.Shape = "Ball"
-		w = Instance.new("Weld")
-		w.Parent = me.Character.Torso
-		w.Part0 = x
-		w.Part1 = me.Character.Torso
-		me.Character.Torso.Anchored = false	
-		shine = script.point:Clone()
-		shine.Parent = x
-		shine.Range = 5
-		wait(180)
-	--[[for _,obj in pairs(script:GetChildren()) do
-		if obj:IsA("CharacterMesh") then
-			obj:Clone().Parent = Char
+function ConvertCode(keycode)
+	local code = tostring(keycode)
+	local pattern = "Enum.KeyCode%p%a"
+	local anchor = "%p%a+"
+	local finalkey = ""
+	for t in code:gmatch(anchor) do
+		for fc in t:gmatch("%a+") do
+		finalkey = fc
 		end
-	end]]
-game.Debris:AddItem(x,10)
-wait(10)	
-shine:Destroy()
-Resize(Char,0.9^-1)
-me.Character.Humanoid.JumpPower = 50
-me.Character.Humanoid.Walkspeed = 16		
-		local d = me.Character:GetChildren()
-						for i=1, #d do 
-						if (d[i].className == "Hat") then 
-						d[i].Handle.Anchored = false
-						end 
-						end
-						local f = me.Character:GetChildren() 
-						for i=1, #f do 
-						if (f[i].className == "Part") then 
-						f[i].Anchored = false
-						end 
-						end
-	wait(waittime)
-	game:GetService("Chat"):Chat(Player.Character.Head, "Cat Instinct is ready")
-		end
-
-enabled = true
+	end
+	return finalkey:lower()
 end
 
+function Trip()
+	local P1 = Vector3.new(-Range,-Range,-Range)+Char.Torso.Position
+	local P2 = Vector3.new(Range,Range,Range)+Char.Torso.Position
+	local Region = Region3.new(P1,P2)
+	for _,Part in pairs(game.Workspace:FindPartsInRegion3(Region,nil,100)) do
+		if Part.Parent:FindFirstChild("Humanoid") and Part.Parent ~= Char then
+			Part.Parent.Humanoid.Sit = true
+			if Part.Parent.Humanoid:FindFirstChild("Tripped") == nil then
+			local TripTag = Instance.new("BoolValue",Part.Parent.Humanoid);TripTag.Name = "Tripped"
+			local savedtorsocframe = Part.Parent.Torso.CFrame
+			local walkspeedco = coroutine.wrap(function()
+				local waitsy = 0
+				repeat wait();waitsy = waitsy+0.03;Part.Parent.Torso.CFrame = savedtorsocframe until waitsy >= 2
+				TripTag:Destroy()
+			end)
+			walkspeedco()
+			end
+		end
+	end
+end
 
-	
+function EmperorEye()
+	ChatService:Chat(Char,"I won't let anybody look down upon me...",2)
+	wait(0.5)
+	ChatService:Chat(Char,"It's over now...",2)
+	wait(0.5)
+	ChatService:Chat(Char,"Emperors eye!",2)
+	local Glow = Instance.new("PointLight",Char.Torso)
+	Glow.Brightness = math.huge
+	Glow.Color = Color3.new(1,0,0)
+	Glow.Range = 20
+	Glow.Shadows = true
+	local gg = false
+	local C1 = coroutine.wrap(function()
+		while Glow ~= nil or Glow.Parent ~= Char.Torso do wait()
+		if gg == true then break end
+		Trip()
+		end
+	end)
+	C1()
+	local asd = false
+	local runcon
+	runcon = Char.Humanoid.Running:connect(function(speed)
+				if asd == false then
+					asd = true
+					local kasda = coroutine.wrap(function()
+						wait(0.7)
+						asd = false
+					end)
+					kasda()
+					for _,part in pairs(Char:GetChildren()) do
+						local parttoclone = nil
+						local savedcframe = nil
+						if part.Name ~= "HumanoidRootPart" then
+							if part:IsA("BasePart") then
+								parttoclone = part
+								savedcframe = part.CFrame
+							elseif part:IsA("Hat") then
+								parttoclone = part.Handle
+								savedcframe = part.Handle.CFrame
+							end
+							if parttoclone ~= nil then
+								local PartHolder = Instance.new("Model",Char.Torso)
+								PartHolder.Name = ""
+								local PartEffect = Instance.new("Humanoid",PartHolder)
+								PartEffect.MaxHealth = 0
+								local PC = Instance.new("Part")
+								PC.Parent = workspace
+								PC.CanCollide = false
+								PC.Anchored = true
+								PC.Name = parttoclone.Name
+								PC.BrickColor = EffectColor
+								PC.Size = parttoclone.Size
+								PC.TopSurface = 0
+								PC.BottomSurface = 0
+								PC.Transparency = 0.3
+								PC.CFrame = savedcframe
+								PC.CanCollide = false
+								PC.Changed:connect(function()
+									PC.CanCollide = false
+								end)
+								if parttoclone:FindFirstChild("Mesh") then
+									local Mesh = parttoclone.Mesh:Clone()
+									Mesh.TextureId = ""
+									Mesh.Parent = PC
+								end
+								local fade = coroutine.wrap(function()
+									for i = 1, 28 do
+									PC.Transparency = PC.Transparency + 0.1/4
+									wait()
+									end
+								end)
+								fade()
+								game.Debris:AddItem(PC,.7)								
+							end
+						end
+					end
+					end
+	end)
+	wait(EmperorEyeDuration)
+	runcon:disconnect()
+	Glow:Destroy()
+	gg = true
+	wait(ReloadTime)
+	CD = false
+end
 
-mouse.KeyDown:connect(onKeyDown)
+game:GetService("UserInputService").InputBegan:connect(function(inputobject,gpe)
+	local code = inputobject.KeyCode
+	local Key = ConvertCode(code)
+	if CD == false and Key == ActivateKey and not gpe then
+		CD = true
+		EmperorEye()
+	end
+end)
 ------------------------------------------------
 local Player = game.Players.LocalPlayer
 local debounce = false
