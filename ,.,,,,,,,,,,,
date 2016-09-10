@@ -847,9 +847,9 @@ TrueZone = function(stringa,userinputstate,inputobject)
 	if On == false then
 		On = true
 		LastUseTime = tick()
-		ChatService:Chat(Char,"I will not lose here...",2)
+		ChatService:Chat(Char,"Heh....-",2)
 		wait(0.5)
-		ChatService:Chat(Char,"Zone!",2)
+		ChatService:Chat(Char,"*Genocide Chara Eyes*",2)
 		Char.PrimaryPart = Char:WaitForChild("Torso")
 		Char:WaitForChild("Humanoid").WalkSpeed = ZoneSpeed
 		local ZoneGlow = Instance.new("PointLight",Char:WaitForChild("Torso"))
