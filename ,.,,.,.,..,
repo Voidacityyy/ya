@@ -190,7 +190,7 @@ Char = workspace[Player.Name]
 local function inputBegan(inputObject, gameProcessedEvent)
 if debounce then return end
 debounce = true
-if inputObject.KeyCode == Enum.KeyCode.R and not gameProcessedEvent and Player.Character then
+if inputObject.KeyCode == Enum.KeyCode.C and not gameProcessedEvent and Player.Character then
 local humanoid = Player.Character:FindFirstChild("Humanoid")
 game:GetService("Chat"):Chat(Player.Character.Head, "Dash!")
 if humanoid then
