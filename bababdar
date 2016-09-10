@@ -129,97 +129,43 @@ function EmperorEye()
 	wait(ReloadTime)
 	CD = false
 end
+----------------------------------------
 
-game:GetService("UserInputService").InputBegan:connect(function(inputobject,gpe)
-	local code = inputobject.KeyCode
-	local Key = ConvertCode(code)
-	if CD == false and Key == ActivateKey and not gpe then
-		CD = true
-		EmperorEye()
-		--------------------------------------
+local Player = game.Players.LocalPlayer
+local debounce = false
+
+local function inputBegan(inputObject, gameProcessedEvent)
+	if debounce then return end
+	debounce = true
+	
+	if inputObject.KeyCode == Enum.KeyCode.X and not gameProcessedEvent and Player.Character then
+		local humanoid = Player.Character:FindFirstChild("Humanoid")
+		local torso = Player.Character:FindFirstChild("Torso")
 		
-		ChatService = game:GetService("Chat")
-ActivateKey = "x"
-Plr = game.Players.LocalPlayer
-Char = Plr.Character or Plr.CharacterAdded:wait()
-CD = false
-Range = 10
-ReloadTime = 30
-EffectColor = BrickColor.new("Really black")
-Char = workspace:WaitForChild(Plr.Name)
-
-function ConvertCode(keycode)
-local code = tostring(keycode)
-local pattern = "Enum.KeyCode%p%a"
-local anchor = "%p%a+"
-local finalkey = ""
-for t in code:gmatch(anchor) do
-for fc in t:gmatch("%a+") do
-finalkey = fc
-end
-end
-return finalkey:lower()
-end
-
-function VanishEffect()
-local P1 = Vector3.new(-Range,-Range,-Range)+Char.Torso.Position
-local P2 = Vector3.new(Range,Range,Range)+Char.Torso.Position
-local Region = Region3.new(P1,P2)
-for _,Part in pairs(game.Workspace:FindPartsInRegion3(Region,nil,100)) do
-if game.Players:GetPlayerFromCharacter(Part.Parent) ~= nil and Part.Parent ~= Char then
-local plrtargetted = game.Players:GetPlayerFromCharacter(Part.Parent)
-if plrtargetted.CameraMode == Enum.CameraMode.Classic then
-plrtargetted.CameraMode = Enum.CameraMode.LockFirstPerson
-local sad = coroutine.wrap(function()
-wait(0.5)
-plrtargetted.CameraMode = Enum.CameraMode.Classic
-end)
-sad()
-end
-end
-end
-end
-
-function CheckBall()
-for _,thing in pairs(Char:GetChildren()) do
-if thing:IsA("Tool") and thing:FindFirstChild("Shoot()") then
-return true
-end
-end
-return false
-end
-
-function VanishingDrive()
-if CheckBall() then
-ChatService:Chat(Char,"Kasamatsu : Full Drive")
-local op = Char.Torso.Position
-VanishEffect()
-Char.Torso.CFrame = Char.Torso.CFrame*CFrame.new(0,0,-25)
-local effect = Instance.new("Part",workspace)
-effect.CanCollide = false
-effect.BrickColor = EffectColor
-effect.Transparency = 0.4
-effect.Anchored = true
-effect.Size = Vector3.new(4,4,(op-Char.Torso.Position).Magnitude)
-effect.TopSurface = 0
-effect.BottomSurface = 0
-effect.CFrame = CFrame.new(Char.Torso.Position,op)*CFrame.new(0,0,-(op-Char.Torso.Position).Magnitude/2)
-effect.Changed:connect(function()
-effect.CanCollide = false
-end)
-game.Debris:AddItem(effect,1.5)
-wait(ReloadTime)
-end
-CD = false
-end
-
-game:GetService("UserInputService").InputBegan:connect(function(inputobject,gpe)
-local code = inputobject.KeyCode
-local Key = ConvertCode(code)
-if CD == false and Key == ActivateKey and not gpe then
-CD = true
-VanishingDrive()
-end
-end)
+		local head = Player.Character:FindFirstChild("Head")
+		if head then
+			game:GetService("Chat"):Chat(head, "Jump!")
+		end
+		
+		if humanoid and torso then
+			local jump = Instance.new("BodyForce")
+			jump.Parent = torso
+			jump.force = Vector3.new(0,6500,0)
+			wait(.5)
+			if jump then jump:Destroy() end
+			
+			if humanoid then
+				humanoid.WalkSpeed = 2
+				wait(2)
+			end
+			if humanoid then 
+				humanoid.WalkSpeed = 16
+				wait(10)
+			end
+		end	
 	end
-end)
+	debounce = false
+end
+
+game:GetService("UserInputService").InputBegan:connect(inputBegan)
+
