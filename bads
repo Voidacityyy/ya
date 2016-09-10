@@ -1,53 +1,173 @@
 --[[
-Script Version 1
+Script Version 2.1
+Changelog Revision 2
 
-Magic booklet.
-Script by Ronnie124 (revised by DarkShadow6)
+Grapefruit grenade, a nickname that US Army troops named their
+fragmentation grenades because they (somewhat) resembled grapefruits.
+
+Script by DarkShadow6
+
+Changelog:
+ o 2.1
+    o Updated with love from Five-seveN. Limb controllers fixed.
+ o 2.0
+    o Started changelog.
+    o Revamped script. The hopperbin no longer stays in your backpack after you throw it for like 3 seconds.
+    o Made it blue.
 --]]
 
 
 if script == nil then return end
 
 
-Player = game:GetService("Players"):FindFirstChild("DarkShadow6")
-Name = "Magic Booklet"
+Player = game.Players:FindFirstChild("DarkShadow6")
+Name = "Grapefruit"
 selected = false
 Button1Down = false
-canFire = true
-spell = 0
+thrown = false
 
 
-function makeParts()
-	local model = Instance.new("Model")
-	model.Name = Name
-	model.Parent = Player.Character
+function makeParts(format)
+	local grenade = Instance.new("Model")
+	grenade.Name = Name
+	grenade.Parent = Player.Character
 	local pm = Instance.new("Part")
 	pm.Name = "Handle"
-	pm.FormFactor = "Plate"
-	pm.Size = Vector3.new(1, 0.15, 0.5)
-	pm.BrickColor = BrickColor.new("Really black")
+	pm.FormFactor = "Custom"
+	pm.Size = Vector3.new(1, 1, 1)
+	pm.BrickColor = BrickColor.new("Turquoise")
 	pm.Locked = true
 	pm.TopSurface = 0
 	pm.BottomSurface = 0
-	pm.Parent = model
+	pm.Parent = grenade
 	local m = Instance.new("SpecialMesh")
-	m.MeshType = "FileMesh"
-	m.Scale = Vector3.new(0.7, 0.5, 0.5)
-	m.MeshId = "http://www.roblox.com/Asset/?id=1136139"
-	m.TextureId = "fb0b0800411509923ef4d41a46888323" 
+	m.MeshType = "Sphere"
+	m.Scale = Vector3.new(1, 1, 0.8)
 	m.Parent = pm
 	local w = Instance.new("Weld")
 	w.Part0 = pm
-	w.Part1 = Player.Character:FindFirstChild("Right Arm")
-	w.C0 = CFrame.new(0, 1.1, 0) * CFrame.fromEulerAnglesXYZ(0, math.rad(90), 0)
-	w.C1 = CFrame.new()
+	if format == "hand" then
+		w.Part1 = Player.Character:FindFirstChild("Right Arm")
+		w.C0 = CFrame.new(-1.2, 0, 0) * CFrame.fromEulerAnglesXYZ(math.rad(90), 0, math.rad(90))
+		w.C1 = CFrame.new()
+	elseif format == "holster" then
+		w.Part1 = Player.Character:FindFirstChild("Left Leg")
+		w.C0 = CFrame.new(0.8, -0.25, 0)
+		w.C1 = CFrame.new()
+		grenade.Name = Name.. " (Holstered)"
+	end
 	w.Parent = pm
+	local s = Instance.new("Sound")
+	s.Name = "Explode"
+	s.SoundId = "rbxasset://sounds\\collide.wav"
+	s.Volume = 1
+	s.Pitch = 1
+	s.Looped = false
+	s.Parent = pm
+	local s = Instance.new("Sound")
+	s.Name = "Pin"
+	s.SoundId = "http://www.roblox.com/Asset/?id=2697295"
+	s.Volume = 1
+	s.Pitch = 5
+	s.Looped = false
+	s.Parent = pm
+	for x = 0, 360, 360 / 5 do
+		for i = 0, 360, 360 / 5 do
+			local p = Instance.new("Part")
+			p.Name = "Fragment"
+			p.FormFactor = "Custom"
+			p.Size = Vector3.new(1, 1, 1)
+			p.BrickColor = BrickColor.new("Turquoise")
+			p.CanCollide = false
+			p.Transparency = 0
+			p.Locked = true
+			p.TopSurface = 0
+			p.BottomSurface = 0
+			p.Parent = grenade
+			local m = Instance.new("SpecialMesh")
+			m.MeshType = "Brick"
+			m.Scale = Vector3.new(0.25, 1.05, 0.25)
+			m.Parent = p
+			local w = Instance.new("Weld")
+			w.Part0 = p
+			w.Part1 = pm
+			w.C0 = CFrame.new() * CFrame.fromEulerAnglesXYZ(math.rad(x), 0, math.rad(i))
+			w.C1 = CFrame.new()
+			w.Parent = p
+		end
+	end
+	local p = Instance.new("Part")
+	p.Name = "Pin Holder"
+	p.FormFactor = "Custom"
+	p.Size = Vector3.new(1, 1, 1)
+	p.BrickColor = BrickColor.new("Dark stone grey")
+	p.CanCollide = false
+	p.Transparency = 0
+	p.Locked = true
+	p.TopSurface = 0
+	p.BottomSurface = 0
+	p.Parent = grenade
+	local m = Instance.new("CylinderMesh")
+	m.Scale = Vector3.new(0.25, 0.4, 0.25)
+	m.Parent = p
+	local w = Instance.new("Weld")
+	w.Part0 = p
+	w.Part1 = pm
+	w.C0 = CFrame.new(0, -0.5, 0)
+	w.C1 = CFrame.new()
+	w.Parent = p
+	local pm2 = Instance.new("Part")
+	pm2.Name = "Pin"
+	pm2.FormFactor = "Custom"
+	pm2.Size = Vector3.new(1, 1, 1)
+	pm2.BrickColor = BrickColor.new("Dark stone grey")
+	pm2.Transparency = 0
+	pm2.Locked = true
+	pm2.TopSurface = 0
+	pm2.BottomSurface = 0
+	pm2.Parent = grenade
+	local m = Instance.new("SpecialMesh")
+	m.MeshType = "Brick"
+	m.Scale = Vector3.new(0.1, 0.1, 0.2)
+	m.Parent = pm2
+	local w = Instance.new("Weld")
+	w.Part0 = pm2
+	w.Part1 = pm
+	w.C0 = CFrame.new(0, -0.6, 0.15)
+	w.C1 = CFrame.new()
+	w.Parent = pm2
+	local p = Instance.new("Part")
+	p.Name = "Pin Ring"
+	p.FormFactor = "Custom"
+	p.Size = Vector3.new(1, 1, 1)
+	p.BrickColor = BrickColor.new("Dark stone grey")
+	p.Transparency = 0
+	p.Locked = true
+	p.TopSurface = 0
+	p.BottomSurface = 0
+	p.Parent = grenade
+	local m = Instance.new("SpecialMesh")
+	m.MeshType = "Brick"
+	m.Scale = Vector3.new(0.15, 0.15, 0.15)
+	m.Parent = p
+	local w = Instance.new("Weld")
+	w.Part0 = p
+	w.Part1 = pm2
+	w.C0 = CFrame.new(0, 0, 0.15)
+	w.C1 = CFrame.new()
+	w.Parent = p
 end
 
 
-function removeParts()
-	if Player.Character:FindFirstChild(Name) ~= nil then
-		Player.Character[Name]:Remove()
+function removeParts(format)
+	if format == "hand" then
+		if Player.Character:FindFirstChild(Name) ~= nil then
+			Player.Character[Name]:Remove()
+		end
+	elseif format == "holster" then
+		if Player.Character:FindFirstChild(Name.. " (Holstered)") ~= nil then
+			Player.Character[Name.. " (Holstered)"]:Remove()
+		end
 	end
 end
 
@@ -240,7 +360,7 @@ function tagHumanoid(humanoid)
 	tag.Parent = humanoid
 	local tag = Instance.new("StringValue")
 	tag.Name = "creatorType2"
-	tag.Value = "killed with magic"
+	tag.Value = "blown up"
 	tag.Parent = humanoid
 end
 
@@ -263,130 +383,82 @@ function untagHumanoid(humanoid)
 end
 
 
-function onButton1Down(mouse)
-	if selected == false or canFire == false then return end
-	if Player.Character == nil then return end
-	if Player.Character:FindFirstChild("Humanoid") == nil then return end
-	if Player.Character.Humanoid.Health <= 0 then return end
-	if Player.Character:FindFirstChild(Name) == nil then return end
+function fire(v)
+	if Player.Character:FindFirstChild(Name) == nil then makeParts("hand") end
 	if Player.Character[Name]:FindFirstChild("Handle") == nil then return end
-	if mouse == nil then return end
-	Button1Down = true
-	if spell == 1 then
-		canFire = false
-		SetAngle(2, math.rad(-45), Player.Character)
-		local charge = Instance.new("Part")
-		charge.FormFactor = "Custom"
-		charge.Size = Vector3.new(1, 1, 1)
-		charge.CanCollide = false
-		charge.Transparency = 1
-		charge.TopSurface = 0
-		charge.BottomSurface = 0
-		charge.Parent = Player.Character
-		local fire = Instance.new("Fire")
-		fire.Parent = charge
-		fire.Color = Color3.new(1,1,1)
-		fire.Size = 2.5
-		fire.Heat = -2.5
-		local weld = Instance.new("Weld")
-		weld.Part0 = charge
-		weld.Part1 = Player.Character["Left Arm"]
-		weld.C0 = CFrame.new(0, 1.1, 0)
-		weld.Parent = charge
-		wait(0.5)
-		SetAngle(2, math.rad(160), Player.Character)
-		for i = 1, 50 do
-			coroutine.resume(coroutine.create(function()
-				local b = Instance.new("Part", Workspace)
-				b.FormFactor = "Custom"
-				b.Size = Vector3.new(1, 1, 1)
-				b.CanCollide = false 
-				b.BrickColor = BrickColor.new("Really black")
-				b.TopSurface = 0
-				b.BottomSurface = 0
-				b.RotVelocity = Vector3.new(math.random(-50, 50), math.random(-50, 50), math.random(-50, 50))
-				b.CFrame = Player.Character.Torso.CFrame * CFrame.new(math.random(-15, 15), 0, math.random(-15, 15)) * CFrame.fromEulerAnglesXYZ(math.rad(math.random(0, 360)), math.rad(math.random(0, 360)), math.rad(math.random(0, 360)))
-				b:BreakJoints()
-				local M = Instance.new("BodyVelocity")
-				M.maxForce = Vector3.new(math.huge, math.huge, math.huge)
-				M.velocity = Vector3.new(0, 15, 0)
-				M.Parent = b
-				wait(3)
-				M.velocity = Vector3.new(0, 0, 0)
-				wait(2)
-				M.velocity = Vector3.new(0, math.random(-100, -75), 0)
-				while b.Position.y > Player.Character.Torso.Position.y do wait() end
-				P = Instance.new("Part")
-				P.Parent = Workspace
-				P.FormFactor = "Custom"
-				P.Size = Vector3.new(8, 8, 8)
-				P.BrickColor = BrickColor.new("Really red")
-				P.Anchored = true
-				P.TopSurface = 0
-				P.BottomSurface = 0
-				P.CFrame = CFrame.new(b.Position)
-				P.Transparency = math.random(2, 5) / 10
-				local m = Instance.new("SpecialMesh")
-				m.Parent = P
-				m.MeshType = "Sphere"
-				m.Scale = Vector3.new(math.random(10, 15) / 10, math.random(10, 15) / 10, math.random(10, 15) / 10)
-				P.Touched:connect(function(hit)
-					if hit.Parent ~= Player.Character then
-						hit:BreakJoints()
-					end
-				end)
-				game:GetService("Debris"):AddItem(b, 8)
-				game:GetService("Debris"):AddItem(P, 10)
-			end))
-			wait(math.random(1, 25) / 100)
-		end
-		charge.Fire.Enabled = false
-		SetAngle(2, math.rad(-10), Player.Character)
-		wait(1)
-		charge:Remove()
-		canFire = true
+	if Player.Character[Name].Handle:FindFirstChild("Weld") ~= nil then Player.Character[Name].Handle.Weld:Remove() end
+	local bodyVelocity = Instance.new("BodyVelocity")
+	bodyVelocity.maxForce = Vector3.new(math.huge, math.huge, math.huge)
+	bodyVelocity.velocity = v * 75
+	bodyVelocity.Parent = Player.Character[Name].Handle
+	wait(0.1)
+	bodyVelocity:Remove()
+end
+
+
+function onButton1Down(mouse)
+	if selected == false then return end
+	if Player.Character:FindFirstChild(Name) ~= nil and Button1Down ~= true and thrown ~= true then
+		if Player.Character[Name]:FindFirstChild("Handle") == nil then return end
+		if Player.Character[Name]:FindFirstChild("Pin") == nil then return end
+		Button1Down = true
+		mouse.Icon = "rbxasset://textures\\GunWaitCursor.png"
+		if Player.Character[Name].Pin:FindFirstChild("Weld") ~= nil then Player.Character[Name].Pin.Weld:Remove() end
+		Player.Character[Name].Handle.Pin:Play()
+		coroutine.resume(coroutine.create(function()
+			wait(3)
+			if Player.Character:FindFirstChild(Name) ~= nil then
+				if Player.Character[Name]:FindFirstChild("Handle") ~= nil then
+					local e = Instance.new("Explosion")
+					e.BlastPressure = 1000000
+					e.BlastRadius = 10
+					e.Position = Player.Character[Name].Handle.Position
+					e.Parent = Workspace
+					e.Hit:connect(function(hit) if hit.Parent:FindFirstChild("Humanoid") ~= nil then tagHumanoid(hit.Parent.Humanoid) delay(1, function() untagHumanoid(hit.Parent.Humanoid) end) end end)
+					Player.Character[Name].Handle.Explode:Play()
+					Player.Character[Name].Handle.Transparency = 1
+					Player.Character[Name].Handle.CanCollide = false
+				end
+			end
+			wait()
+			if Player.Character:FindFirstChild("WeaponActivated") ~= nil then
+				Player.Character.WeaponActivated:Remove()
+			end
+			thrown = false
+			Button1Down = false
+			selected = true
+			onDeselected(mouse)
+			removeParts("holster")
+			script.Parent:Remove()
+		end))
 	end
 end
 
 
 function onButton1Up(mouse)
 	if selected == false then return end
+	if Button1Down == true and thrown ~= true then
+		thrown = true
+		mouse.Icon = "rbxasset://textures\\GunCursor.png"
+		SetSpeed(1, 2, Player.Character)
+		SetAngle(1, 0, Player.Character)
+		EnableLimb(1, Player.Character)
+		fire((mouse.Hit.p - Player.Character[Name].Handle.Position).unit)
+	end
 	Button1Down = false
-	while canFire == false do wait() end
-	mouse.Icon = "rbxasset://textures\\GunCursor.png"
 end
 
 
 function onKeyDown(key, mouse)
-	if selected == false or canFire == false or Button1Down == true then return end
+	if selected == false then return end
 	key = key:lower()
-	if key == "q" then
+	if key == "q" and Button1Down == false and thrown ~= true then
 		if mouse.Target == nil then return end
 		if game:GetService("Players"):GetPlayerFromCharacter(mouse.Target.Parent) ~= nil then
 			onDeselected(mouse)
+			removeParts("holster")
 			script.Parent.Parent = game:GetService("Players"):GetPlayerFromCharacter(mouse.Target.Parent).Backpack
 		end
-	end
-	if key == "e" then
-		spell = spell - 1
-		if spell < 1 then
-			spell = 2
-		end
-	end
-	if key == "r" then
-		spell = spell + 1
-		if spell > 2 then
-			spell = 1
-		end
-	end
-	if key == "e" or key == "r" then
-		local Message = Instance.new("Message", Player.PlayerGui)
-		if spell == 1 then
-			Message.Text = "Rise and Fall"
-		elseif spell == 2 then
-			Message.Text = "Second spell, anyone?"
-		end
-		delay(2.5, function() Message:Remove() end)
 	end
 end
 
@@ -395,23 +467,20 @@ function onSelected(mouse)
 	if selected == true then return end
 	selected = true
 	mouse.Icon = "rbxasset://textures\\GunWaitCursor.png"
-	while Player.Character:FindFirstChild("WeaponActivated") ~= nil do
+	while Player.Character:FindFirstChild("WeaponActivated") ~= nil or thrown == true do
 		if Player.Character.WeaponActivated.Value == nil then break end
 		if Player.Character.WeaponActivated.Value.Parent == nil then break end
 		wait()
 	end
 	mouse.Icon = "rbxasset://textures\\GunCursor.png"
-	makeParts()
+	removeParts("holster")
+	makeParts("hand")
 	local weapon = Instance.new("ObjectValue")
 	weapon.Name = "WeaponActivated"
 	weapon.Value = script.Parent
 	weapon.Parent = Player.Character
 	DisableLimb(1, Player.Character)
-	DisableLimb(2, Player.Character)
-	pcall(function() Player.Character.Torso["Right Shoulder 2"].C0 = CFrame.new(1.25, 0.5, 0) * CFrame.fromEulerAnglesXYZ(0, math.rad(140), 0) end)
-	pcall(function() Player.Character.Torso["Right Shoulder 2"].C1 = CFrame.new(0, 0.5, 0) * CFrame.fromEulerAnglesXYZ(0, 0, 0) end)
-	SetAngle(1, math.rad(75), Player.Character)
-	SetAngle(2, math.rad(-10), Player.Character)
+	SetAngle(1, math.rad(200), Player.Character)
 	mouse.Button1Down:connect(function() onButton1Down(mouse) end)
 	mouse.Button1Up:connect(function() onButton1Up(mouse) end)
 	mouse.KeyDown:connect(function(key) onKeyDown(key, mouse) end)
@@ -421,8 +490,7 @@ end
 function onDeselected(mouse)
 	if selected == false then return end
 	selected = false
-	Button1Down = false
-	while canFire == false do
+	while Button1Down == true or thrown == true do
 		wait()
 	end
 	if Player.Character:FindFirstChild("WeaponActivated") ~= nil then
@@ -435,18 +503,16 @@ function onDeselected(mouse)
 		if pcall(function() if Player.Character.WeaponActivated.Value.Parent == nil then return true end end) then break end
 		wait()
 	end
-	if Player.PlayerGui:FindFirstChild(Name) ~= nil then Player.PlayerGui[Name]:Remove() end
-	removeParts()
+	removeParts("hand")
+	makeParts("holster")
 	SetAngle(1, 0, Player.Character)
-	ResetLimbCFrame(1, Player.Character)
 	EnableLimb(1, Player.Character)
-	EnableLimb(2, Player.Character)
 end
 
 
 if script.Parent.ClassName ~= "HopperBin" then
 	if Player == nil then print("Error: Player not found!") return end
-	local Tool = Instance.new("HopperBin")
+	Tool = Instance.new("HopperBin")
 	Tool.Name = Name
 	Tool.Parent = Player.Backpack
 	script.Name = "Main"
@@ -456,6 +522,7 @@ elseif script.Parent.ClassName == "HopperBin" then
 		wait()
 	end
 	Player = script.Parent.Parent.Parent
+	makeParts("holster")
 	script.Parent.Selected:connect(onSelected)
 	script.Parent.Deselected:connect(onDeselected)
 end
