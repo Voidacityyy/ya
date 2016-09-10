@@ -729,14 +729,14 @@ tool.Deselected:connect(function()
 	EndAnimation()
 end)
 ------------------------------------------------
-Character.Shirt:Destroy()
-Character.Pants:Destroy()
-shirt = Instance.new("Shirt", Character)
+character.Shirt:Destroy()
+character.Pants:Destroy()
+shirt = Instance.new("Shirt", character)
 shirt.Name = "Shirt"
-pants = Instance.new("Pants", Character)
+pants = Instance.new("Pants", character)
 pants.Name = "Pants"
-Character.Shirt.ShirtTemplate = "http://www.roblox.com/asset/?id=426572943"
-Character.Pants.PantsTemplate = "http://www.roblox.com/asset/?id=463444426"
+character.Shirt.ShirtTemplate = "http://www.roblox.com/asset/?id=426572943"
+character.Pants.PantsTemplate = "http://www.roblox.com/asset/?id=463444426"
 z=Instance.new('Decal',head)
 z.Face = 'Front'
 z.Texture='rbxassetid://416805897'
