@@ -12,10 +12,10 @@ ZoneSpeed = 26
 ZoneContestSpeed = 30
 CD = false
 On = false
-Duration = 90
+Duration = 99999
 LastUseTime = 0
-ReloadTime = 360
-ReloadTimeMax = 360
+ReloadTime = 1
+ReloadTimeMax = 1
 --
 Plr = game.Players.LocalPlayer
 Mouse = Plr:GetMouse()
@@ -98,6 +98,7 @@ Char:WaitForChild("Humanoid").Died:wait()
 CAS:UnbindAction("TrueZone")
 --tbhlelelelel
 -----------------------------------
+
 local Player = game.Players.LocalPlayer
 local debounce = false
  
@@ -105,22 +106,20 @@ local debounce = false
 local function inputBegan(inputObject, gameProcessedEvent)
 if debounce then return end
 debounce = true
-if inputObject.KeyCode == Enum.KeyCode.x and not gameProcessedEvent and Player.Character then
+if inputObject.KeyCode == Enum.KeyCode.B and not gameProcessedEvent and Player.Character then
 local humanoid = Player.Character:FindFirstChild("Humanoid")
-game:GetService("Chat"):Chat(Player.Character.Head, "Fake!")
+game:GetService("Chat"):Chat(Player.Character.Head, "Mirage!")
 if humanoid then
-game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(-15,-5,0)
+game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(0,-10,0)
 if humanoid then
-game.Players.LocalPlayer.Character["Right Arm"].Transparency = 1
-game.Players.LocalPlayer.Character["Left Arm"].Transparency = 1	
-game.Players.LocalPlayer.Character["Head"].Transparency = 1
-game.Players.LocalPlayer.Character["Torso"].Transparency = 1
-game.Players.LocalPlayer.Character["Left Leg"].Transparency = 1
-game.Players.LocalPlayer.Character["Head"].Transparency = 1
-game.Players.LocalPlayer.Character["Right Leg"].Transparency = 1
+game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Head"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Torso"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0.5
 if humanoid then
 wait(2.5)
-game.Players.LocalPlayer.Character["Head"].Transparency = 0
 game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0
 game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0
 game.Players.LocalPlayer.Character["Head"].Transparency = 0
@@ -141,24 +140,22 @@ game:GetService("UserInputService").InputBegan:connect(inputBegan)
 local function inputBegan(inputObject, gameProcessedEvent)
 if debounce then return end
 debounce = true
-if inputObject.KeyCode == Enum.KeyCode.B and not gameProcessedEvent and Player.Character then
+if inputObject.KeyCode == Enum.KeyCode.v and not gameProcessedEvent and Player.Character then
 local humanoid = Player.Character:FindFirstChild("Humanoid")
-game:GetService("Chat"):Chat(Player.Character.Head, "Fake!")
+game:GetService("Chat"):Chat(Player.Character.Head, "Tatsuya : Mirage!")
 if humanoid then
 game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(15,-5,0)
 if humanoid then
-game.Players.LocalPlayer.Character["Head"].Transparency = 1
-game.Players.LocalPlayer.Character["Right Arm"].Transparency = 1
-game.Players.LocalPlayer.Character["Left Arm"].Transparency = 1
-game.Players.LocalPlayer.Character["Head"].Transparency = 1
-game.Players.LocalPlayer.Character["Torso"].Transparency = 1
-game.Players.LocalPlayer.Character["Left Leg"].Transparency = 1
-game.Players.LocalPlayer.Character["Right Leg"].Transparency = 1
+game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Head"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Torso"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0.5
 
 
 if humanoid then
 wait(2.5)
-game.Players.LocalPlayer.Character["Head"].Transparency = 0
 game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0
 game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0
 game.Players.LocalPlayer.Character["Head"].Transparency = 0
@@ -176,4 +173,4 @@ debounce = false
 end
 
 
-game:GetService("UserInputService").InputBegan:connect(inputBegan)
+
