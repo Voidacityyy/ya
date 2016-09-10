@@ -280,3 +280,91 @@ debounce = false
 end
 
 game:GetService("UserInputService").InputBegan:connect(inputBegan)
+----------------------------------------------------------
+
+ChatService = game:GetService("Chat")
+RS = game:GetService("RunService").RenderStepped
+ActivateKey = "v"
+Plr = game.Players.LocalPlayer
+Char = Plr.Character or Plr.CharacterAdded:wait()
+CD = false
+On = false
+ReloadTime = 3
+EagleSpots = {}
+EagleBin = Instance.new("Message",Char)
+Char = workspace:WaitForChild(Plr.Name)
+
+function ConvertCode(keycode)
+	local code = tostring(keycode)
+	local pattern = "Enum.KeyCode%p%a"
+	local anchor = "%p%a+"
+	local finalkey = ""
+	for t in code:gmatch(anchor) do
+		for fc in t:gmatch("%a+") do
+		finalkey = fc
+		end
+	end
+	return finalkey:lower()
+end
+
+function EE()
+	if On == false then
+	On = true
+	ChatService:Chat(Char,"Eagle Eye!",2)
+	ReloadTime = 0
+	local Tags = {}
+	local co = coroutine.wrap(function()
+		while On == true do RS:wait()
+			for _,obj in pairs(workspace:GetChildren()) do
+				if obj:FindFirstChild("Torso") then
+					local found = false
+					for _,p in next, Tags do
+						if p == obj.Torso then
+							found = true
+							break
+						end
+					end
+					if found == false then
+					local E = Instance.new("Part",EagleBin)
+					E.BrickColor = BrickColor.new("Black")
+					local PlrAttempt = game.Players:GetPlayerFromCharacter(obj)
+					if PlrAttempt ~= nil then
+						E.BrickColor = PlrAttempt.TeamColor
+					end
+					E.Transparency = .4
+					E.Anchored = false
+					E.CanCollide = false
+					E.FormFactor = "Custom"
+					E.Size = Vector3.new(5,5,5)
+					local EW = Instance.new("Weld",E)
+					EW.Part0 = E
+					EW.Part1 = obj.Torso
+					table.insert(EagleSpots,E)
+					table.insert(Tags,obj.Torso)
+					end
+				end
+			end
+		end
+		return
+	end)
+	co()
+	else
+	On = false
+	ChatService:Chat(Char,"Eagle Eye off!",2)
+	ReloadTime = 3	
+	for _,e in pairs(EagleSpots) do
+		e:Destroy()
+	end
+	end
+	wait(ReloadTime)
+	CD = false
+end
+
+game:GetService("UserInputService").InputBegan:connect(function(inputobject,gpe)
+	local code = inputobject.KeyCode
+	local Key = ConvertCode(code)
+	if CD == false and Key == ActivateKey and not gpe then
+		CD = true
+		EE()
+	end
+end)
