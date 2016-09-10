@@ -822,8 +822,8 @@ ChatService = game:GetService("Chat")
 ButtonHolding = nil
 --
 ZoneColor = BrickColor.new("Really red")
-ZoneSpeed = 26
-ZoneContestSpeed = 30
+ZoneSpeed = 40
+ZoneContestSpeed = 50
 CD = false
 On = false
 Duration = 99999
