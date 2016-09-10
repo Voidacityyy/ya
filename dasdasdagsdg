@@ -129,8 +129,16 @@ function EmperorEye()
 	wait(ReloadTime)
 	CD = false
 end
-----------------------------------------
 
+game:GetService("UserInputService").InputBegan:connect(function(inputobject,gpe)
+	local code = inputobject.KeyCode
+	local Key = ConvertCode(code)
+	if CD == false and Key == ActivateKey and not gpe then
+		CD = true
+		EmperorEye()
+	end
+end)
+-----------------------------------
 local Player = game.Players.LocalPlayer
 local debounce = false
 
@@ -168,4 +176,3 @@ local function inputBegan(inputObject, gameProcessedEvent)
 end
 
 game:GetService("UserInputService").InputBegan:connect(inputBegan)
-
