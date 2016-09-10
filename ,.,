@@ -741,7 +741,7 @@ z = Instance.new("Sound", Workspace or char)
 z.Parent= Workspace
 z.SoundId = "rbxassetid://480746068"
 z.Looped = true
-z.Pitch = 1.5
+z.Pitch = 0.75
 z.Volume = 1
 wait(.01)
 z:Play()
