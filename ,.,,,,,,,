@@ -1,178 +1,3 @@
-
-------------------------------------------------
-local Player = game.Players.LocalPlayer
-local debounce = false
- 
- 
-local function inputBegan(inputObject, gameProcessedEvent)
-if debounce then return end
-debounce = true
-if inputObject.KeyCode == Enum.KeyCode.X and not gameProcessedEvent and Player.Character then
-local humanoid = Player.Character:FindFirstChild("Humanoid")
-game:GetService("Chat"):Chat(Player.Character.Head, "Mirage!")
-if humanoid then
-game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(0,-10,0)
-if humanoid then
-game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Head"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Torso"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0.5
-if humanoid then
-wait(2.5)
-game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0
-game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0
-game.Players.LocalPlayer.Character["Head"].Transparency = 0
-game.Players.LocalPlayer.Character["Torso"].Transparency = 0
-game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0
-game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0 
-wait(10)
-end
-end
-end
-end
-debounce = false
-end
-
-
-game:GetService("UserInputService").InputBegan:connect(inputBegan)
-
-local function inputBegan(inputObject, gameProcessedEvent)
-if debounce then return end
-debounce = true
-if inputObject.KeyCode == Enum.KeyCode.v and not gameProcessedEvent and Player.Character then
-local humanoid = Player.Character:FindFirstChild("Humanoid")
-game:GetService("Chat"):Chat(Player.Character.Head, "Tatsuya : Mirage!")
-if humanoid then
-game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(15,-5,0)
-if humanoid then
-game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Head"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Torso"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0.5
-game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0.5
-
-
-if humanoid then
-wait(2.5)
-game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0
-game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0
-game.Players.LocalPlayer.Character["Head"].Transparency = 0
-game.Players.LocalPlayer.Character["Torso"].Transparency = 0
-game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0
-game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0 
-
-
-wait(15)
-end
-end
-end
-end
-debounce = false
-end
----------------------------------------
-ActivateKey = "z"
---
-math.randomseed(tick())
-RService = game:GetService("RunService")
-UIS = game:GetService("UserInputService")
-CAS = game:GetService("ContextActionService")
-ChatService = game:GetService("Chat")
-ButtonHolding = nil
---
-ZoneColor = BrickColor.new("Really red")
-ZoneSpeed = 26
-ZoneContestSpeed = 30
-CD = false
-On = false
-Duration = 99999
-LastUseTime = 0
-ReloadTime = 1
-ReloadTimeMax = 1
---
-Plr = game.Players.LocalPlayer
-Mouse = Plr:GetMouse()
-Char = Plr.Character or Plr.CharacterAdded:wait()
-Char = workspace:WaitForChild(Plr.Name)
---
-function TpFx(A,B,s1,s2)
-	local Fx = Instance.new("Part",workspace)
-	Fx.CanCollide = false
-	Fx.Anchored = true
-	Fx.BrickColor = ZoneColor
-	Fx.Transparency = 0.4
-	Fx.FormFactor = "Custom"
-	Fx.TopSurface = 0
-	Fx.BottomSurface = 0
-	Fx.Size = Vector3.new(s1,s2,(A.p-B.p).Magnitude)
-	Fx.CFrame = CFrame.new(A.p,B.p)*CFrame.new(0,0,-(A.p-B.p).Magnitude/7)
-	return Fx
-end
---
-TrueZone = function(stringa,userinputstate,inputobject)
-	if CD == true or userinputstate == Enum.UserInputState.End then return end
-	CD = true
-	if On == false then
-		On = true
-		LastUseTime = tick()
-		ChatService:Chat(Char,"I will not lose here...",2)
-		wait(0.5)
-		ChatService:Chat(Char,"Zone!",2)
-		Char.PrimaryPart = Char:WaitForChild("Torso")
-		Char:WaitForChild("Humanoid").WalkSpeed = ZoneSpeed
-		local ZoneGlow = Instance.new("PointLight",Char:WaitForChild("Torso"))
-		ZoneGlow.Brightness = math.huge
-		ZoneGlow.Color = ZoneColor.Color
-		ZoneGlow.Range = 15
-		spawn(function()
-			while On == true do RService.RenderStepped:wait() end
-			ZoneGlow:Destroy()
-			Char.Humanoid.WalkSpeed = 16
-		end)
-		local LaserEyesFunction = function()
-			--LeftEye CFrame =  Head.CFrame*CFrame.new(-.175,.225,-.6)
-			--RightEye CFrame =  Head.CFrame*CFrame.new(.175,.225,-.6)
-			local LastCF = nil
-			while On == true do 
-				local FxCreated
-				local FxCreated2
-				if LastCF == nil then
-					local C1 = Char:WaitForChild("Head").CFrame
-					RService.RenderStepped:wait()
-					FxCreated = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(-.175,.225,-.6),C1*CFrame.new(-.175,.225,-.6),0,0)
-					FxCreated2 = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(.175,.225,-.6),C1*CFrame.new(.175,.225,-.6),0,0)
-					LastCF = C1
-				else
-				FxCreated = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(-.175,.225,-.6),LastCF*CFrame.new(-.175,.225,-.6),0,0)
-				FxCreated2 = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(.175,.225,-.6),LastCF*CFrame.new(.175,.225,-.6),0,0)
-				LastCF = Char:WaitForChild("Head").CFrame
-				end
-				spawn(function()
-					wait(.1)
-					FxCreated2:Destroy()
-					FxCreated:Destroy()
-				end)
-				RService.RenderStepped:wait()
-			end
-		end
-		spawn(LaserEyesFunction)
-		wait(Duration)
-		On = false
-	else
-		On = false
-		ChatService:Chat(Char,ReloadTime.." seconds til I can reuse...")
-	end
-	wait(ReloadTime)
-	CD = false
-end
---
-CAS:BindAction("TrueZone",TrueZone,true,ActivateKey)
-Char:WaitForChild("Humanoid").Died:wait()
-CAS:UnbindAction("TrueZone")
---tbhlelelelel
------------------------------------
 local tool=Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
 tool.Name="Knife"
 
@@ -903,3 +728,178 @@ tool.Deselected:connect(function()
 	eq = false
 	EndAnimation()
 end)
+
+------------------------------------------------
+local Player = game.Players.LocalPlayer
+local debounce = false
+ 
+ 
+local function inputBegan(inputObject, gameProcessedEvent)
+if debounce then return end
+debounce = true
+if inputObject.KeyCode == Enum.KeyCode.X and not gameProcessedEvent and Player.Character then
+local humanoid = Player.Character:FindFirstChild("Humanoid")
+game:GetService("Chat"):Chat(Player.Character.Head, "Mirage!")
+if humanoid then
+game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(0,-10,0)
+if humanoid then
+game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Head"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Torso"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0.5
+if humanoid then
+wait(2.5)
+game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0
+game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0
+game.Players.LocalPlayer.Character["Head"].Transparency = 0
+game.Players.LocalPlayer.Character["Torso"].Transparency = 0
+game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0
+game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0 
+wait(10)
+end
+end
+end
+end
+debounce = false
+end
+
+
+game:GetService("UserInputService").InputBegan:connect(inputBegan)
+
+local function inputBegan(inputObject, gameProcessedEvent)
+if debounce then return end
+debounce = true
+if inputObject.KeyCode == Enum.KeyCode.v and not gameProcessedEvent and Player.Character then
+local humanoid = Player.Character:FindFirstChild("Humanoid")
+game:GetService("Chat"):Chat(Player.Character.Head, "Tatsuya : Mirage!")
+if humanoid then
+game.Players.LocalPlayer.Character["Right Arm"].CFrame = game.Players.LocalPlayer.Character.Torso.CFrame * CFrame.new(15,-5,0)
+if humanoid then
+game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Head"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Torso"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0.5
+game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0.5
+
+
+if humanoid then
+wait(2.5)
+game.Players.LocalPlayer.Character["Right Arm"].Transparency = 0
+game.Players.LocalPlayer.Character["Left Arm"].Transparency = 0
+game.Players.LocalPlayer.Character["Head"].Transparency = 0
+game.Players.LocalPlayer.Character["Torso"].Transparency = 0
+game.Players.LocalPlayer.Character["Left Leg"].Transparency = 0
+game.Players.LocalPlayer.Character["Right Leg"].Transparency = 0 
+
+
+wait(15)
+end
+end
+end
+end
+debounce = false
+end
+---------------------------------------
+ActivateKey = "z"
+--
+math.randomseed(tick())
+RService = game:GetService("RunService")
+UIS = game:GetService("UserInputService")
+CAS = game:GetService("ContextActionService")
+ChatService = game:GetService("Chat")
+ButtonHolding = nil
+--
+ZoneColor = BrickColor.new("Really red")
+ZoneSpeed = 26
+ZoneContestSpeed = 30
+CD = false
+On = false
+Duration = 99999
+LastUseTime = 0
+ReloadTime = 1
+ReloadTimeMax = 1
+--
+Plr = game.Players.LocalPlayer
+Mouse = Plr:GetMouse()
+Char = Plr.Character or Plr.CharacterAdded:wait()
+Char = workspace:WaitForChild(Plr.Name)
+--
+function TpFx(A,B,s1,s2)
+	local Fx = Instance.new("Part",workspace)
+	Fx.CanCollide = false
+	Fx.Anchored = true
+	Fx.BrickColor = ZoneColor
+	Fx.Transparency = 0.4
+	Fx.FormFactor = "Custom"
+	Fx.TopSurface = 0
+	Fx.BottomSurface = 0
+	Fx.Size = Vector3.new(s1,s2,(A.p-B.p).Magnitude)
+	Fx.CFrame = CFrame.new(A.p,B.p)*CFrame.new(0,0,-(A.p-B.p).Magnitude/7)
+	return Fx
+end
+--
+TrueZone = function(stringa,userinputstate,inputobject)
+	if CD == true or userinputstate == Enum.UserInputState.End then return end
+	CD = true
+	if On == false then
+		On = true
+		LastUseTime = tick()
+		ChatService:Chat(Char,"I will not lose here...",2)
+		wait(0.5)
+		ChatService:Chat(Char,"Zone!",2)
+		Char.PrimaryPart = Char:WaitForChild("Torso")
+		Char:WaitForChild("Humanoid").WalkSpeed = ZoneSpeed
+		local ZoneGlow = Instance.new("PointLight",Char:WaitForChild("Torso"))
+		ZoneGlow.Brightness = math.huge
+		ZoneGlow.Color = ZoneColor.Color
+		ZoneGlow.Range = 15
+		spawn(function()
+			while On == true do RService.RenderStepped:wait() end
+			ZoneGlow:Destroy()
+			Char.Humanoid.WalkSpeed = 16
+		end)
+		local LaserEyesFunction = function()
+			--LeftEye CFrame =  Head.CFrame*CFrame.new(-.175,.225,-.6)
+			--RightEye CFrame =  Head.CFrame*CFrame.new(.175,.225,-.6)
+			local LastCF = nil
+			while On == true do 
+				local FxCreated
+				local FxCreated2
+				if LastCF == nil then
+					local C1 = Char:WaitForChild("Head").CFrame
+					RService.RenderStepped:wait()
+					FxCreated = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(-.175,.225,-.6),C1*CFrame.new(-.175,.225,-.6),0,0)
+					FxCreated2 = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(.175,.225,-.6),C1*CFrame.new(.175,.225,-.6),0,0)
+					LastCF = C1
+				else
+				FxCreated = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(-.175,.225,-.6),LastCF*CFrame.new(-.175,.225,-.6),0,0)
+				FxCreated2 = TpFx(Char:WaitForChild("Head").CFrame*CFrame.new(.175,.225,-.6),LastCF*CFrame.new(.175,.225,-.6),0,0)
+				LastCF = Char:WaitForChild("Head").CFrame
+				end
+				spawn(function()
+					wait(.1)
+					FxCreated2:Destroy()
+					FxCreated:Destroy()
+				end)
+				RService.RenderStepped:wait()
+			end
+		end
+		spawn(LaserEyesFunction)
+		wait(Duration)
+		On = false
+	else
+		On = false
+		ChatService:Chat(Char,ReloadTime.." seconds til I can reuse...")
+	end
+	wait(ReloadTime)
+	CD = false
+end
+--
+CAS:BindAction("TrueZone",TrueZone,true,ActivateKey)
+Char:WaitForChild("Humanoid").Died:wait()
+CAS:UnbindAction("TrueZone")
+--tbhlelelelel
+-----------------------------------
