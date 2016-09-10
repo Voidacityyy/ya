@@ -1,153 +1,109 @@
-local enabled = true
+ChatService = game:GetService("Chat")
+ActivateKey = "c"
 Plr = game.Players.LocalPlayer
 Char = Plr.Character or Plr.CharacterAdded:wait()
-Player = script.Parent.Parent
-me = Player
-mouse = Player:GetMouse()
-run = game:GetService("RunService")
-LeftShoulder = Player.Character.Torso["Left Shoulder"]
-RightShoulder =   Player.Character.Torso["Right Shoulder"]
-Colour = BrickColor.new("Really black")
-waittime = 9999
-RModule = require(script:WaitForChild("MainModule"))
-Resize = RModule["ScaleCharacter"]
+CD = false
+Range = 30
+Duration = 5
+ReloadTime = 12
+EffectColor = BrickColor.new("Toothpaste")
+Char = workspace:WaitForChild(Plr.Name)
 
-function onKeyDown(key)
-if not enabled then return end
-enabled = false
-	Key = key:lower()
-	
-	if key == "c" then
-		
-		Run = game:GetService("RunService")
-		game:GetService("Chat"):Chat(Player.Character.Head, "Animal Instincts!")-- what it says untop head
-		me.Character.Humanoid.WalkSpeed = 17
-		
-		local ETF = script.ET:Clone()
-		ETF.Parent = Char.Head
-		ETF.Enabled = true
-		
-		wait(0.05)
-		ETF.Size = UDim2.new(1.5 ,95 ,1.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(2 ,95 ,2 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(2.5 ,95 ,2.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(3 ,95 ,3 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(3.5 ,95 ,3.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(4 ,95 ,4 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(4.5 ,95 ,4.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(5 ,95 ,5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(5.5 ,95 ,5.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(6 ,95 ,6 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(6.5 ,95 ,6.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(7 ,95 ,7 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(7.5 ,95 ,7.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(8 ,95 ,8 ,95)
-		wait(2)
-		ETF.Size = UDim2.new(7.5 ,95 ,7.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(7 ,95 ,7 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(6.5 ,95 ,6.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(6 ,95 ,6 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(5.5 ,95 ,5.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(5 ,95 ,5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(4.5 ,95 ,4.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(4 ,95 ,4 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(3.5 ,95 ,3.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(3 ,95 ,3 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(2.5 ,95 ,2.5 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(2 ,95 ,2 ,95)
-		wait(0.05)
-		ETF.Size = UDim2.new(1.5 ,95 ,1.5 ,95)
-		wait(0.05)
-		
-		
-		
-		ETF:Destroy()	
-	
-	
-	Resize(Char,0.9)
-	
-	
-	me.Character.Humanoid.WalkSpeed = 17
-	me.Character.Humanoid.JumpPower = 83.5
-		x = Instance.new("Part")
-		x.Parent = me.Character.Torso
-		x.Transparency = 1
-		x.Reflectance = 0.4
-		x.BrickColor = Colour
-		x.Material = "SmoothPlastic"
-		x.Size = Vector3.new(5,5,5)-- size
-		x.Anchored = false
-		x.CanCollide = false
-		x.Name = Player.Name
-		x.CFrame = me.Character.Torso.CFrame*CFrame.new(0,0,0)
-		x.Shape = "Ball"
-		w = Instance.new("Weld")
-		w.Parent = me.Character.Torso
-		w.Part0 = x
-		w.Part1 = me.Character.Torso
-		me.Character.Torso.Anchored = false	
-		shine = script.point:Clone()
-		shine.Parent = x
-		shine.Range = 5
-		wait(180)
-	--[[for _,obj in pairs(script:GetChildren()) do
-		if obj:IsA("CharacterMesh") then
-			obj:Clone().Parent = Char
+function ConvertCode(keycode)
+	local code = tostring(keycode)
+	local pattern = "Enum.KeyCode%p%a"
+	local anchor = "%p%a+"
+	local finalkey = ""
+	for t in code:gmatch(anchor) do
+		for fc in t:gmatch("%a+") do
+		finalkey = fc
 		end
-	end]]
-game.Debris:AddItem(x,10)
-wait(10)	
-shine:Destroy()
-Resize(Char,0.9^-1)
-me.Character.Humanoid.JumpPower = 50
-me.Character.Humanoid.Walkspeed = 16		
-		local d = me.Character:GetChildren()
-						for i=1, #d do 
-						if (d[i].className == "Hat") then 
-						d[i].Handle.Anchored = false
-						end 
-						end
-						local f = me.Character:GetChildren() 
-						for i=1, #f do 
-						if (f[i].className == "Part") then 
-						f[i].Anchored = false
-						end 
-						end
-	wait(waittime)
-	game:GetService("Chat"):Chat(Player.Character.Head, "Wolf Instinct is ready")
-		end
-
-enabled = true
+	end
+	return finalkey:lower()
 end
 
+function OD()
+	ChatService:Chat(Char,"MISDIRECTION OVERDRIVE!",2)
+	local Glow = Instance.new("PointLight",Char.Torso)
+	Glow.Brightness = math.huge
+	Glow.Color = EffectColor.Color
+	Glow.Range = 20
+	Glow.Shadows = true
+	local done = false
+	local c = coroutine.wrap(function()
+		wait(Duration)
+		done = true
+		Glow:Destroy()
+		wait(ReloadTime)
+		CD = false
+	end)
+	c()
+	local camscripts = {}
+	local rs = game:GetService("RunService").RenderStepped
+	pcall(function()
+		while done == false do rs:wait()
+			print'1'
+			for _,plr in pairs(game.Players:GetPlayers()) do
+				print'2'
+				if plr.Character ~= nil and plr ~= Plr then
+					print'3'
+					if (plr.Character.Torso.Position-Char.Torso.Position).Magnitude <= Range then
+						print'4'
+						if plr.TeamColor ~= Plr.TeamColor or #game:GetService("Teams"):GetChildren() <= 0 then
+							print'5'
+							if  plr.Backpack:FindFirstChild("Cam") == nil then
+								print'6'
+								local CamMess = script.Cam:Clone()
+								CamMess.Parent = plr.Backpack
+								CamMess.Char2View.Value = Char
+								CamMess.Range.Value = Range
+								CamMess.Disabled = false
+								table.insert(camscripts,CamMess)
+								print'6.5'
+								local effect = Instance.new("Part",Char)
+								effect.BrickColor = EffectColor
+								effect.FormFactor = "Custom"
+								effect.Size = Vector3.new(0,0,(Char.Head.Position-plr.Character.Head.Position).Magnitude)
+								effect.CFrame = CFrame.new(plr.Character.Head.Position,Char.Head.Position)*CFrame.new(0,0,-(Char.Head.Position-plr.Character.Head.Position).Magnitude/2)
+								effect.Anchored = true
+								effect.CanCollide = false
+								effect.Transparency = 0.3
+								effect.TopSurface = 0
+								effect.BottomSurface = 0
+								local e = coroutine.wrap(function()
+									wait(.25)
+									effect:Destroy()
+									return
+								end)
+								e()
+								print'7'
+							end
+							print'8'
+						end
+					end
+					print'9'
+				end
+				print'10'
+			end
+			print'11'
+		end
+	end)
+	print'12'
+	repeat wait() until done == true
+	for _,s in pairs(camscripts) do
+		s:WaitForChild("Done").Value = true
+	end
+	print'13'
+end
 
-	
-
-mouse.KeyDown:connect(onKeyDown)
+game:GetService("UserInputService").InputBegan:connect(function(inputobject,gpe)
+	local code = inputobject.KeyCode
+	local Key = ConvertCode(code)
+	if CD == false and Key == ActivateKey and not gpe then
+		CD = true
+		OD()
+	end
+end)
 ------------------------------------------------
 local Player = game.Players.LocalPlayer
 local debounce = false
