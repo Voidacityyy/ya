@@ -279,8 +279,8 @@ local conn_type = "Snap"
 local anim_head = false
 
 weapon_properties = {
-	mesh_id = "http://www.roblox.com/asset/?id=430428354",
-	texture_id = "http://www.roblox.com/asset/?id=430428397",  
+	mesh_id = "http://www.roblox.com/asset/?id=121944778",
+	texture_id = "http://www.roblox.com/asset/?id=121944805",  
 	scale = Vector3.new(0.6, 0.6, 0.6),
 	transparency = 0,
 	reflectance = 0,
