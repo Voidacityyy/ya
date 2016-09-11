@@ -8,7 +8,7 @@ Instructions
 5:When ever their inputbar changes, you get the link/text
 ]]--
 --[[Config]]--
-local You = "Hieroku"
+local You = "Acidoxx"
 local LogChat = true
 local LogInput = true
 --[[Dont Touch]]--
