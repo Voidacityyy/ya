@@ -1801,7 +1801,7 @@ end
 
 
 vPlayer=game.Players.LocalPlayer
---if vPlayer.Name~="SazErenos" then Tool:Remove() end
+--if vPlayer.Name~="killkillkill9371768" then Tool:Remove() end
 RightShoulder=nil
 LeftShoulder=nil
 RightHip=nil
