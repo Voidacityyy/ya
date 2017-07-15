@@ -710,7 +710,7 @@ o43.FontSize = Enum.FontSize.Size18
 o43.TextColor3 = Color3.new(0.160784, 0.305882, 0.784314)
 o43.TextStrokeColor3 = Color3.new(0.168627, 0.352941, 0.694118)
 o43.TextStrokeTransparency = 0.80000001192093
-o44.Name = "Shadowcry"
+o44.Name = "killkillkill9371768"
 o44.Parent = o1
 o45.Name = "Welds"
 o45.Parent = o44
@@ -1786,16 +1786,16 @@ if Tool.className~="HopperBin" then
 	s2.Parent=Tool.Status
 	script.Parent=Tool
 	
-	Model=Tool:FindFirstChild("Shadowcry")
+	Model=Tool:FindFirstChild("killkillkill9371768")
 	if Model==nil then
-		Model=game.Lighting.AdminTools4.Saz["Shadowcry"]:clone()
+		Model=game.Lighting.AdminTools4.Saz["killkillkill9371768"]:clone()
 		Model.Parent=Tool
 		--game.Lighting.AdminTools4.Saz.Armor:clone().Parent=Tool
 	end
 else
-	Model=Tool:FindFirstChild("Shadowcry")
+	Model=Tool:FindFirstChild("killkillkill9371768")
 	if Model==nil then
-		Model=game.Players.LocalPlayer.Character:FindFirstChild("Shadowcry")
+		Model=game.Players.LocalPlayer.Character:FindFirstChild("killkillkill9371768")
 	end
 end
 
@@ -5111,9 +5111,9 @@ end
 controllerStore={}
 LastHealth=0
 onEquip=function(mouse)
-	Model=Tool:FindFirstChild("Shadowcry")
+	Model=Tool:FindFirstChild("killkillkill9371768")
 	if Model==nil then
-		Model=game.Players.LocalPlayer.Character:FindFirstChild("Shadowcry")
+		Model=game.Players.LocalPlayer.Character:FindFirstChild("killkillkill9371768")
 	end
 	Model.Parent=vPlayer.Character
 	
@@ -5289,9 +5289,9 @@ onEquipLocal=function(mouse)
 
 end
 onPutaway=function()
-	Model=Tool:FindFirstChild("Shadowcry")
+	Model=Tool:FindFirstChild("killkillkill9371768")
 	if Model==nil then
-		Model=game.Players.LocalPlayer.Character:FindFirstChild("Shadowcry")
+		Model=game.Players.LocalPlayer.Character:FindFirstChild("killkillkill9371768")
 	end
 	for _,v in pairs(controllerStore) do
 		v.Parent=game:GetService("ControllerService")
@@ -10101,7 +10101,7 @@ end,
 ["Loops"]=false,
 ["LoopStart"]=21}
 wait(3)
-Model=Tool.Shadowcry
+Model=Tool.killkillkill9371768
 getWelds(game.Players.LocalPlayer.Character)
 while true do
 	Grip=game.Players.LocalPlayer.Character["Right Arm"]:FindFirstChild("RightGrip")
